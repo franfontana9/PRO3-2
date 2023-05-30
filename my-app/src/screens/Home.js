@@ -21,8 +21,8 @@ const arrayConDatos = [
 
 
 class Home extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
 
     }
 
@@ -36,7 +36,10 @@ class Home extends Component {
 
   render() {
     return (
-        <View>    
+        <View>   
+            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
+                <Text>Mandame al registro gil</Text>    
+            </TouchableOpacity> 
         <Text>
            DALEEE BOOOOOOOCA, DAAALE BOQUITA
         </Text>
