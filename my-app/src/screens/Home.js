@@ -38,7 +38,7 @@ class Home extends Component {
     return (
         <View>   
             <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
-                <Text>Mandame al registro gil</Text>    
+                <Text>Mandame al register</Text>    
             </TouchableOpacity> 
         <Text>
            DALEEE BOOOOOOOCA, DAAALE BOQUITA

@@ -3,8 +3,8 @@ import { Text, View, TextInput, TouchableOpacity, StyleSheet, Touchable } from '
 import {auth} from '../firebase/config'
 
 class FormRegister extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state ={ 
             inputMail: '',
             inputPassword: ''
