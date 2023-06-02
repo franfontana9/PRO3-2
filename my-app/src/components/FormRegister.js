@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Touchable } from 'react-native'
-import {auth} from '../firebase/config'
+import {auth,db} from '../firebase/config'
 
 class FormRegister extends Component {
     constructor(props){
@@ -13,14 +13,21 @@ class FormRegister extends Component {
 
     registrarUsuario(mail, password){
         auth.createUserWithEmailAndPassword(mail, password)
-        .then(data=> console.log(data))
-        .catch(err=> console.log(err))
+        .then( data=> {
+            this.props.navigation.navigate('HomeNav')
+            db.collection('users').add({
+                owner:auth.currentUser.email,
+                createdAt: Date.now()
+            })
+            .then(resp=>console.log(resp))
+            .catch(err=>console.log(err))
+        })
+        .catch(err=>console.log(err))
     }
 
   render() {
     return (
         <View>
-        <Text>Registrate gaaaato</Text>
         <TextInput
         style={styles.input}
         keyboardType='email-address'
@@ -39,8 +46,7 @@ class FormRegister extends Component {
         style={styles.btn}
         onPress={()=> this.registrarUsuario(this.state.inputMail, this.state.inputPassword)}
         >
-        <Text
-            style={styles.btnText} 
+        <Text style={styles.btnText} 
         >Logea mi usuario gil
         </Text>
         </TouchableOpacity>

@@ -1,22 +1,31 @@
 import { Text, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
 import FormRegister from '../components/FormRegister'
+import Login from './Login'
+import { auth } from '../firebase/config'
 
 class Register extends Component {
-    constructor(props){
-        super(props)
+    componentDidMount(){
+      auth.onAuthStateChanged(user=>{
+        if(user){
+          this.props.navigation.navigate('HomeNav')
+        }
 
+      })
     }
   render() {
     return (
       <View>
-        <Text>Aqui vamos a tener nuestro Registro</Text>
         <FormRegister
           navigation={this.props.navigation}
         />
-        <TouchableOpacity onPress={()=> this.props.navigation.navigate('HomeNav', {screen:'Profile'})}>
-            <Text>No tienes cuenta? Create tu Perfil</Text>
+        <Text>Ya tenes cuenta?
+        <TouchableOpacity 
+        onPress={()=> this.props.navigation.navigate('Login')}
+        >
+          <Text>Ingresa ACA</Text>
         </TouchableOpacity>
+        </Text>
       </View>
     )
   }
