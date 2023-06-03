@@ -7,7 +7,8 @@ class FormRegister extends Component {
         super(props)
         this.state ={ 
             inputMail: '',
-            inputPassword: ''
+            inputPassword: '',
+            inputUsername:''
         }
     }
 
@@ -34,6 +35,13 @@ class FormRegister extends Component {
         placeholder='email'
         onChangeText={(text)=> this.setState({inputMail: text})}
         value={this.state.inputMail}
+        />
+        <TextInput
+        style={styles.input}
+        keyboardType='email-address'
+        placeholder='User Name'
+        onChangeText={(text)=> this.setState({inputUsername: text})}
+        value={this.state.inputUsername}
         />
         <TextInput
         style={styles.input}

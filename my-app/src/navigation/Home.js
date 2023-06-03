@@ -5,6 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 import Home from '../screens/Home'
 import Profile from '../screens/Profile'
+import NewPost from '../screens/NewPost';
 
 const Tab = createBottomTabNavigator()
 
@@ -19,6 +20,15 @@ function HomeNav() {
             tabBarIcon: () => 
             <AntDesign name='home' color='green' size={24} />
         }}
+        />
+        <Tab.Screen
+        name='NewPost'
+        component={NewPost}
+        options={{
+          headerShown:false,
+          tabBarIcon: () => 
+          <AntDesign name='plus' color='green' size={24} />
+      }}
         />
         <Tab.Screen 
             name='Profile'
