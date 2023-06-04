@@ -12,6 +12,8 @@ export default class FormPost extends Component {
         placeholder='Agrega la descripcion'
         value={this.props.stateDescripcion}
         onChangeText={(text)=> this.props.actualizarDescripcion(text)}
+        multiline={true}
+        rows={5}
         />
       </View>
     )

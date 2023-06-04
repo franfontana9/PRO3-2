@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import FormPost from '../components/FormPost'
 import { db, auth } from '../firebase/config' 
 
-
 class NewPost extends Component {
     constructor(props){
         super(props)
@@ -28,9 +27,9 @@ class NewPost extends Component {
             owner: auth.currentUser.email ,
             descripcion: descripcion,
             foto,
-            createdAt,
+            comments,
             likes,
-            comments: Date.now()
+            createdAt: Date.now(),
         })
         .then((resp)=>{
             this.props.navigation.navigate('Feed')
