@@ -59,6 +59,9 @@ class Post extends Component {
     return (
       <View>
         <Text>{this.props.data.data.descripcion}</Text>
+        <View
+        /* aca va algo de la clase del 5/6*/
+        >
         {
           this.state.isLiked ?
           <TouchableOpacity
@@ -82,6 +85,7 @@ class Post extends Component {
           </TouchableOpacity>
           
         }
+        </View>
         
       </View>
       )

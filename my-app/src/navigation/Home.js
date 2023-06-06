@@ -2,8 +2,8 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AntDesign } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
 
-import Home from '../screens/Home'
 import Profile from '../screens/Profile'
 import NewPost from '../screens/NewPost';
 import Feed from '../screens/Feed';
@@ -20,25 +20,26 @@ function HomeNav() {
         options={{
             headerShown:false,
             tabBarIcon: () => 
-            <AntDesign name='home' color='green' size={24} />
-        }}
+            <SimpleLineIcons name="home" size={24} color="black" /> 
+    }}
         />
         <Tab.Screen
         name='NewPost'
         component={NewPost}
         options={{
-          headerShown:false,
-          tabBarIcon: () => 
-          <AntDesign name='plus' color='green' size={24} />
-      }}
+            headerShown:false,
+            tabBarIcon: () => 
+            <AntDesign name="plus" size={24} color="black" />      
+    }}
         />
         <Tab.Screen 
             name='Profile'
             component={Profile}
             options={{
+                headerShown:false,
                 tabBarIcon: ()=> 
-                <AntDesign name='profile' color='red' size ={24} />
-            }}    
+                <AntDesign name="user" size={24} color="black" /> 
+        }}    
         />
     </Tab.Navigator>
     )
