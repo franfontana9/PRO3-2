@@ -28,7 +28,8 @@ class FormRegister extends Component {
 
   render() {
     return (
-        <View>
+    <View style={styles.form}>
+        <View style={styles.campo1}>
         <TextInput
         style={styles.input}
         keyboardType='email-address'
@@ -36,6 +37,9 @@ class FormRegister extends Component {
         onChangeText={(text)=> this.setState({inputMail: text})}
         value={this.state.inputMail}
         />
+        </View>
+
+        <View style={styles.campo2} >
         <TextInput
         style={styles.input}
         keyboardType='email-address'
@@ -43,6 +47,9 @@ class FormRegister extends Component {
         onChangeText={(text)=> this.setState({inputUsername: text})}
         value={this.state.inputUsername}
         />
+        </View>
+
+        <View style={styles.campo3}>
         <TextInput
         style={styles.input}
         placeholder='Password'
@@ -50,6 +57,8 @@ class FormRegister extends Component {
         value={this.state.inputPassword}
         secureTextEntry={true}
         />
+        </View>
+
         <TouchableOpacity
         style={styles.btn}
         onPress={()=> this.registrarUsuario(this.state.inputMail, this.state.inputPassword)}
@@ -58,7 +67,7 @@ class FormRegister extends Component {
         >Logea mi usuario gil
         </Text>
         </TouchableOpacity>
-        </View>
+    </View>
         )
   }
 }
@@ -70,7 +79,7 @@ const styles= StyleSheet.create({
         height:30,
         borderRadius:10,
         padding:5,
-        marginTop:16
+        marginTop:16,
     },
     btn:{
         backgroundColor:'#54d0e0',
@@ -81,6 +90,22 @@ const styles= StyleSheet.create({
     btnText:{
         textAlign:'center',
         color:'black'
+    },
+    form:{
+        flex:1,
+        backgroundColor: 'gray'
+    },
+    campo1:{
+        flex:2,
+        backgroundColor: 'green'
+    },
+    campo2:{
+        flex:3,
+        backgroundColor:'red'
+    },
+    campo3:{
+        flex:4,
+        backgroundColor:'pink'
     }
 })
 
