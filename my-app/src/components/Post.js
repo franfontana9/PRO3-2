@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity, Image, StyleSheet} from 'react-native'
 import {FontAwesome} from '@expo/vector-icons'
 import { db, auth } from '../firebase/config'
 import firebase from 'firebase'
@@ -58,10 +58,13 @@ class Post extends Component {
   render() {
     return (
       <View>
+        <Image
+        source={uri= this.props.data.foto}
+        style={styles.img}
+        
+        />
         <Text>{this.props.data.data.descripcion}</Text>
-        <View
-        /* aca va algo de la clase del 5/6*/
-        >
+        
         {
           this.state.isLiked ?
           <TouchableOpacity
@@ -85,11 +88,25 @@ class Post extends Component {
           </TouchableOpacity>
           
         }
+      <View>
+          <TouchableOpacity
+            onPress={()=> this.props.navigation.navigate('Comments', {id: this.props.data.id})}
+          >
+            <Text>Agregar comentario</Text>
+          </TouchableOpacity>
         </View>
-        
       </View>
+      
       )
   }
 }
+
+const styles = StyleSheet.create ({
+img:{
+  height: 200 
+}
+
+})
+
 
 export default Post

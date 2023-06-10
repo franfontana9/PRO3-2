@@ -78,8 +78,10 @@ const styles= StyleSheet.create({
         borderColor: '#3d3d3d',
         height:30,
         borderRadius:10,
-        padding:5,
+        padding:15,
         marginTop:16,
+        backgroundColor:'green'
+
     },
     btn:{
         backgroundColor:'#54d0e0',
@@ -93,19 +95,23 @@ const styles= StyleSheet.create({
     },
     form:{
         flex:1,
-        backgroundColor: 'gray'
+        backgroundColor: 'white'
     },
     campo1:{
         flex:2,
-        backgroundColor: 'green'
+       
+        padding:15,
+        margin: 15
     },
     campo2:{
         flex:3,
-        backgroundColor:'red'
+        padding:15,
+        margin: 15
     },
     campo3:{
         flex:4,
-        backgroundColor:'pink'
+        padding:15,
+        margin: 15
     }
 })
 

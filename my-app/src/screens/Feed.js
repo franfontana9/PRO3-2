@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, TouchableOpacity, View, FlatList } from 'react-native'
-import { db } from '../firebase/config'
+import { auth, db } from '../firebase/config'
 import Posteos from '../components/Posteos'
 
 class Feed extends Component {
@@ -14,7 +14,11 @@ class Feed extends Component {
 
 
     componentDidMount(){
-        db.collection('posts').onSnapshot(docs=>{
+        db.collection('posts')
+        .orderBy('createdAt','desc')
+        .where('owner','==',auth.currentUser.email)
+        .limit(2)
+        .onSnapshot(docs=>{
 
             let arrayDocs=[]
 
