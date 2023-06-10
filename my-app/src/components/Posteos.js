@@ -8,7 +8,7 @@ export default function Posteos(props) {
       <FlatList
       data={props.data}
       keyExtractor={(item)=>item.id.toString()}
-      renderItem={({item})=><Post data={item}/>}
+      renderItem={({item})=><Post navigation={props.navigation} data={item}/>}
       />
     </View>
   )

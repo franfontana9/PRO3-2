@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AntDesign } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
-
+import FunctionalidadesNav from '../navigation/FuncionalidadesNav';
 import Profile from '../screens/Profile'
 import NewPost from '../screens/NewPost';
 import Feed from '../screens/Feed';
@@ -16,7 +16,7 @@ function HomeNav() {
     <Tab.Navigator >
         <Tab.Screen 
         name='Feed' 
-        component={Feed}
+        component={FunctionalidadesNav}
         options={{
             headerShown:false,
             tabBarIcon: () => 
