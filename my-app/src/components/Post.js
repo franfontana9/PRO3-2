@@ -63,11 +63,13 @@ class Post extends Component {
         style={styles.img}
         
         />
+      
         <Text>{this.props.data.data.descripcion}</Text>
-        
+        <View style={styles.btnsContainer}>
         {
           this.state.isLiked ?
           <TouchableOpacity
+          style={styles.btnLike}
           onPress={()=>this.unLiked()}
           >
             <FontAwesome
@@ -79,6 +81,7 @@ class Post extends Component {
           :
           <TouchableOpacity
           onPress={()=> this.like()}
+          style={styles.btnLike}
           >
             <FontAwesome
             name='heart-o' 
@@ -88,8 +91,9 @@ class Post extends Component {
           </TouchableOpacity>
           
         }
-      <View>
+      
           <TouchableOpacity
+          style={styles.btnComentario}
             onPress={()=> this.props.navigation.navigate('Comments', {id: this.props.data.id})}
           >
             <Text>Agregar comentario</Text>
@@ -104,7 +108,17 @@ class Post extends Component {
 const styles = StyleSheet.create ({
 img:{
   height: 200 
+},
+btnsContainer:{
+  flexDirection: 'row'
+},
+btnLike:{
+  flex:2
+},
+btnComentario:{
+  flex:1
 }
+
 
 })
 
