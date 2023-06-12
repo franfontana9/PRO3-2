@@ -16,8 +16,6 @@ class Feed extends Component {
     componentDidMount(){
         db.collection('posts')
         .orderBy('createdAt','desc')
-        .where('owner','==',auth.currentUser.email)
-        .limit(2)
         .onSnapshot(docs=>{
 
             let arrayDocs=[]
@@ -34,7 +32,7 @@ class Feed extends Component {
     }
   render() {
     return (
-        <View styles={styles.container}>
+        <View style={styles.container}>
             <Text>Feed</Text>
             <Posteos
                 data={this.state.posts}

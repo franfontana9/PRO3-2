@@ -59,6 +59,7 @@ class Post extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <View styles={styles.container}>
         <TouchableOpacity
@@ -68,7 +69,7 @@ class Post extends Component {
            <Text>{this.props.data.data.owner}</Text>
         </TouchableOpacity>
         <Image
-        source={{uri: this.props.data.foto}}
+        source={{uri: this.props.data.data.foto}}
         style={styles.img}
         
         />
@@ -119,7 +120,8 @@ const styles = StyleSheet.create ({
     marginVertical:16
   },
 img:{
-  height: 200 
+  height: 200,
+  width:200
 },
 btnsContainer:{
   flexDirection: 'row'
