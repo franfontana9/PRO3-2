@@ -41,7 +41,9 @@ function HomeNav() {
                 <AntDesign name="user" size={24} color="black" /> 
         }}    
         />
+        
     </Tab.Navigator>
+
     )
 }
 

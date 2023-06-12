@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View,Text,StyleSheet,TouchableOpacity, Image} from 'react-native'
 import { Camera } from 'expo-camera'
+import { storege } from '../firebase/config';
 
 export default class CamaraPosteos extends Component {
     constructor(props){
@@ -30,6 +31,28 @@ export default class CamaraPosteos extends Component {
         
     }
 
+    aceptarFoto(){
+        fetch(this.state.fotoTomada)
+        .then(resp => resp.blob())
+        .then(imagen => {
+            const ref = storege.ref(`fotos/${Date.now().jgp}`)
+            ref.put(imagen)
+            .then((imagen =>{
+                ref.getDownloadURL()
+                .then((url)=>this.props.actualizarEstadoFoto(url))
+            }))
+        })
+        .catch(err => console.log(err))
+    }
+
+    rechazarFoto(){
+        this.setState({
+            mostrarCamara: true,
+            fotoTomada: ''
+        })
+    }
+
+
     render(){
         return (
         <View style={styles.container}>
@@ -56,12 +79,13 @@ export default class CamaraPosteos extends Component {
                     style={styles.img}
                     />
                     <View>
-                        <TouchableOpacity> 
+                        <TouchableOpacity
+                        onPress={()=> this.aceptarFoto()}> 
                             <Text>
                                 Aceptar foto
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity> 
+                        <TouchableOpacity onPress={() => this.rechazarFoto()}> 
                             <Text>
                                 Rechazar foto
                             </Text>

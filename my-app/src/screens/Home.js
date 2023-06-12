@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View , Text , TouchableOpacity , StyleSheet , Image, FlatList} from 'react-native'
-
+import Buscador from './Buscador'
 const arrayConDatos = [
     {
         id: 1,
