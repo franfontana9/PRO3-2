@@ -61,7 +61,12 @@ class Post extends Component {
   render() {
     return (
       <View styles={styles.container}>
-        <Text>{this.props.data.data.owner}</Text>
+        <TouchableOpacity
+        onPress={()=> this.props.navigation.navigate('ProfileAmigo', 
+        {email: this.props.data.data.owner}
+        )}>
+           <Text>{this.props.data.data.owner}</Text>
+        </TouchableOpacity>
         <Image
         source={{uri: this.props.data.foto}}
         style={styles.img}
@@ -111,7 +116,7 @@ class Post extends Component {
 
 const styles = StyleSheet.create ({
   container:{
-    flex:1
+    marginVertical:16
   },
 img:{
   height: 200 
