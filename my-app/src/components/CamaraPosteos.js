@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View,Text,StyleSheet,TouchableOpacity} from 'react-native'
+import {View,Text,StyleSheet,TouchableOpacity, Image} from 'react-native'
 import { Camera } from 'expo-camera'
 
 export default class CamaraPosteos extends Component {
@@ -20,8 +20,11 @@ export default class CamaraPosteos extends Component {
 
     tomarFoto(){
         this.metodosCamara.takePictureAsync()
-        .then(fotoTomo => {
-            console.log(fotoTomada)
+        .then(fotoEnMemoria => {
+            this.setState({
+                fotoTomada: fotoEnMemoria.uri,
+                mostrarCamara: false
+            })
         })
         .catch(err => console.log)
         
@@ -31,7 +34,7 @@ export default class CamaraPosteos extends Component {
         return (
         <View style={styles.container}>
             {
-                this.state.mostrarCamara ? 
+                this.state.mostrarCamara && this.state.fotoTomada === '' ? 
                 <>
                                   <Camera
                         style={styles.camara}
@@ -46,7 +49,28 @@ export default class CamaraPosteos extends Component {
                     </TouchableOpacity>
                 </>
                     
-                    :<text> No tienes permiso para usar la camara </text> 
+                    : this.state.mostrarCamara === false && this.state.fotoTomada !== ''?
+                    <>
+                    <Image 
+                    source={{uri: this.state.fotoTomada}}
+                    style={styles.img}
+                    />
+                    <View>
+                        <TouchableOpacity> 
+                            <Text>
+                                Aceptar foto
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity> 
+                            <Text>
+                                Rechazar foto
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    </>
+
+                    :
+                    <Text> No tienes permiso para usar la camara </Text> 
             }
         </View>
         )
@@ -58,6 +82,9 @@ const styles = StyleSheet.create({
        flex: 1
     },
    camara: {
-       height: 250
+       flex: 1
+   },
+   img: {
+       flex: 1
    }
 })

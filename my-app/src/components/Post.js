@@ -60,7 +60,7 @@ class Post extends Component {
       <View styles={styles.container}>
         <Text>{this.props.data.data.owner}</Text>
         <Image
-        source={uri= this.props.data.foto}
+        source={{uri: this.props.data.foto}}
         style={styles.img}
         
         />
