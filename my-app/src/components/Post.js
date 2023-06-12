@@ -14,7 +14,8 @@ class Post extends Component {
   }
 
   componentDidMount(){
-    let estaMiLike = this.props.data.data.likes.includes(auth.currentUser.email) 
+    if(this.props.data.data.likes){
+      let estaMiLike = this.props.data.data.likes.includes(auth.currentUser.email) 
     if(estaMiLike === true){
       this.setState({
       isLiked: true
@@ -24,6 +25,8 @@ class Post extends Component {
         isLiked: false
         })
     }
+    }
+   
   }
 
   unLiked(){

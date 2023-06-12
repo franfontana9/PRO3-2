@@ -25,6 +25,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins":[
+      ["expo-image-picker",{
+        "photosPermission": "Necesitas permiso de tu despositivo"
+      }]
+    ]
   }
 }
