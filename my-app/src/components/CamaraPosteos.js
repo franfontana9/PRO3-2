@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View,Text,StyleSheet,TouchableOpacity, Image} from 'react-native'
 import { Camera } from 'expo-camera'
-import { storege } from '../firebase/config';
+import { storage } from '../firebase/config';
 
 export default class CamaraPosteos extends Component {
     constructor(props){
@@ -10,11 +10,11 @@ export default class CamaraPosteos extends Component {
             fotoTomada : '',
             mostrarCamara: false,
         }
-        this.metodosDeCamara =  null
+        this.metodosCamara =  null
     }
 
     componentDidMount(){
-        Camera.getCameraPermissionsAsync()
+        Camera.requestCameraPermissionsAsync()
         .then(resp => this.setState({ mostrarCamara: true }))
         .catch(err => console.log(err))
     }
@@ -27,7 +27,7 @@ export default class CamaraPosteos extends Component {
                 mostrarCamara: false
             })
         })
-        .catch(err => console.log)
+        .catch(err => console.log(err))
         
     }
 
@@ -35,12 +35,12 @@ export default class CamaraPosteos extends Component {
         fetch(this.state.fotoTomada)
         .then(resp => resp.blob())
         .then(imagen => {
-            const ref = storege.ref(`fotos/${Date.now().jgp}`)
+            const ref = storage.ref(`fotos/${Date.now().jpg}`)
             ref.put(imagen)
-            .then((imagen =>{
+            .then(() =>{
                 ref.getDownloadURL()
                 .then((url)=>this.props.actualizarEstadoFoto(url))
-            }))
+            })
         })
         .catch(err => console.log(err))
     }
@@ -64,7 +64,7 @@ export default class CamaraPosteos extends Component {
                         type= {Camera.Constants.Type.back}
                         ref={metodosComponente => this.metodosCamara = metodosComponente}
                     />
-                    <TouchableOpacity Onpress= {() => this.tomarFoto()}>
+                    <TouchableOpacity onPress= {() => this.tomarFoto()}>
                     
                         <Text> 
                             Tomar foto

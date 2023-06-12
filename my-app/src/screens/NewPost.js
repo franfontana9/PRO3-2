@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, View, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 import FormPost from '../components/FormPost'
 import { db, auth } from '../firebase/config'
-import CameraPosteos from '../components/CamaraPosteos'
+import CamaraPosteos from '../components/CamaraPosteos'
 
 class NewPost extends Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class NewPost extends Component {
     }
 
     actualizarEstadoFoto(urlFoto){
+        console.log('pasa por aqui')
         this.setState({
             foto: urlFoto
         })
@@ -30,13 +31,13 @@ class NewPost extends Component {
         }
     }
 
-    crearPoste({ descripcion, foto, likes, comments }) {
+    crearPosteo({ descripcion, foto, likes, comments }) {
         db.collection('posts').add({
             owner: auth.currentUser.email,
             descripcion: descripcion,
-            foto,
-            comments,
-            likes,
+            foto: foto,
+            comments: comments,
+            likes: likes,
             createdAt: Date.now(),
         })
             .then((resp) => {
@@ -50,7 +51,7 @@ class NewPost extends Component {
             <View style={styles.container}>
                 {
                     this.state.foto === '' ?
-                        <CameraPosteos 
+                        <CamaraPosteos 
                         actualizarEstadoFoto={
                             (urlFoto)=> this.actualizarEstadoFoto(urlFoto)
                         }
@@ -63,7 +64,7 @@ class NewPost extends Component {
                                 actualizarDescripcion={(text) => this.actualizarDescripcion(text)}
                             />
                             <TouchableOpacity
-                                onPress={() => this.crearPoste({
+                                onPress={() => this.crearPosteo({
                                     descripcion: this.state.descripcion,
                                     foto: this.state.foto,
                                     likes: this.state.likes,
