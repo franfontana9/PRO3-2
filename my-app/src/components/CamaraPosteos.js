@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View,Text,StyleSheet} from 'react-native'
+import {View,Text,StyleSheet,TouchableOpacity} from 'react-native'
 import { Camera } from 'expo-camera'
 
 export default class CamaraPosteos extends Component {
@@ -18,14 +18,36 @@ export default class CamaraPosteos extends Component {
         .catch(err => console.log(err))
     }
 
+    tomarFoto(){
+        this.metodosCamara.takePictureAsync()
+        .then(fotoTomo => {
+            console.log(fotoTomada)
+        })
+        .catch(err => console.log)
+        
+    }
+
     render(){
         return (
         <View style={styles.container}>
-                    <Camera
+            {
+                this.state.mostrarCamara ? 
+                <>
+                                  <Camera
                         style={styles.camara}
                         type= {Camera.Constants.Type.back}
                         ref={metodosComponente => this.metodosCamara = metodosComponente}
                     />
+                    <TouchableOpacity Onpress= {() => this.tomarFoto()}>
+                    
+                        <Text> 
+                            Tomar foto
+                        </Text>
+                    </TouchableOpacity>
+                </>
+                    
+                    :<text> No tienes permiso para usar la camara </text> 
+            }
         </View>
         )
     }
