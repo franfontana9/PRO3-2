@@ -57,7 +57,8 @@ class Post extends Component {
 
   render() {
     return (
-      <View>
+      <View styles={styles.container}>
+        <Text>{this.props.data.data.owner}</Text>
         <Image
         source={uri= this.props.data.foto}
         style={styles.img}
@@ -106,6 +107,9 @@ class Post extends Component {
 }
 
 const styles = StyleSheet.create ({
+  container:{
+    flex:1
+  },
 img:{
   height: 200 
 },
