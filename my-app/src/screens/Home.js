@@ -37,19 +37,13 @@ class Home extends Component {
   render() {
     return (
         <View>   
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
-                <Text>Mandame al register</Text>    
-            </TouchableOpacity> 
-        <Text>
-           DALEEE BOOOOOOOCA, DAAALE BOQUITA
-        </Text>
+        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
+            <Text>Mandame al register</Text>    
+        </TouchableOpacity> 
         <TouchableOpacity 
         style={styles.button}
         onPress={()=>this.ejecucionCorta()} 
         onLongPress={()=>this.ejecucionLarga()}>
-            <Text tyle={styles.textoBtn} >
-                Acaa acaaa ca acaca c 
-            </Text>
         </TouchableOpacity>
        
         <FlatList

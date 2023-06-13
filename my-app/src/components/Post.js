@@ -65,10 +65,10 @@ class Post extends Component {
         onPress={()=> this.props.navigation.navigate('ProfileAmigo', 
         {email: this.props.data.data.owner}
         )}>
-           <Text>{this.props.data.data.owner}</Text>
+           <Text>{this.props.data.data.userName}</Text>
         </TouchableOpacity>
         <Image
-        source={{uri: this.props.data.foto}}
+        source={{uri: this.props.data.data.foto}}
         style={styles.img}
         
         />
@@ -105,7 +105,11 @@ class Post extends Component {
           style={styles.btnComentario}
             onPress={()=> this.props.navigation.navigate('Comments', {id: this.props.data.id})}
           >
-            <Text>Agregar comentario</Text>
+             <FontAwesome
+            name='comment' 
+            size={24} 
+            color='grey'
+             />  
           </TouchableOpacity>
         </View>
       </View>

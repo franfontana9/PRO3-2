@@ -8,17 +8,20 @@ class FormRegister extends Component {
         this.state ={ 
             inputMail: '',
             inputPassword: '',
-            inputUsername:''
+            inputUsername:'',
+            inputBio:''
         }
     }
 
-    registrarUsuario(mail, password){
+    registrarUsuario(mail, password, inputBio, inputUsername){
         auth.createUserWithEmailAndPassword(mail, password)
         .then( data=> {
             this.props.navigation.navigate('HomeNav')
             db.collection('users').add({
                 owner:auth.currentUser.email,
-                createdAt: Date.now()
+                createdAt: Date.now(),
+                // inputBio: inputBio,
+                // inputUsername: inputUsername
             })
             .then(resp=>console.log(resp))
             .catch(err=>console.log(err))
@@ -29,7 +32,6 @@ class FormRegister extends Component {
   render() {
     return (
     <View style={styles.form}>
-        <View style={styles.campo1}>
         <TextInput
         style={styles.input}
         keyboardType='email-address'
@@ -37,19 +39,23 @@ class FormRegister extends Component {
         onChangeText={(text)=> this.setState({inputMail: text})}
         value={this.state.inputMail}
         />
-        </View>
 
-        <View style={styles.campo2} >
-        <TextInput
+        {/* <TextInput
         style={styles.input}
         keyboardType='email-address'
         placeholder='User Name'
         onChangeText={(text)=> this.setState({inputUsername: text})}
         value={this.state.inputUsername}
-        />
-        </View>
+        /> */}
 
-        <View style={styles.campo3}>
+        {/* <TextInput
+        style = {styles.input}
+        placeholder= 'Escriba una bio'
+        keyboardType="default"
+        onChangeText={(text) => this.setState({inputBio:text})}
+        value={this.state.inputBio}
+        /> */}
+
         <TextInput
         style={styles.input}
         placeholder='Password'
@@ -57,15 +63,17 @@ class FormRegister extends Component {
         value={this.state.inputPassword}
         secureTextEntry={true}
         />
-        </View>
 
         <TouchableOpacity
         style={styles.btn}
         onPress={()=> this.registrarUsuario(this.state.inputMail, this.state.inputPassword)}
         >
-        <Text style={styles.btnText} 
-        >Logea mi usuario gil
-        </Text>
+        <Text style={styles.btnText}>Registrarme</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+        onPress={()=> this.props.navigation.navigate('Login')}
+        >
+          <Text style={styles.btnText1}>Ya tenes cuenta? Ingresa Aca!</Text>
         </TouchableOpacity>
     </View>
         )
@@ -80,38 +88,31 @@ const styles= StyleSheet.create({
         borderRadius:10,
         padding:15,
         marginTop:16,
-        backgroundColor:'green'
+        backgroundColor:'white'
 
     },
     btn:{
-        backgroundColor:'#54d0e0',
+        backgroundColor:'gray',
         borderRadius:10,
         padding:16,
-        marginTop:48
+        marginTop:48,
+
     },
     btnText:{
         textAlign:'center',
-        color:'black'
+        color:'black',
     },
     form:{
         flex:1,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        margin: 0,
+        borderRadius:10,
+        padding:10,
     },
-    campo1:{
-        flex:2,
-       
-        padding:15,
-        margin: 15
-    },
-    campo2:{
-        flex:3,
-        padding:15,
-        margin: 15
-    },
-    campo3:{
-        flex:4,
-        padding:15,
-        margin: 15
+    btnText1:{
+        margin:10,
+        textAlign:'center',
+        color:'black'
     }
 })
 

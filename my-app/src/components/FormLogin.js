@@ -19,7 +19,7 @@ class FormLogin extends Component {
 
   render(){
     return (
-    <View>
+    <View style={styles.form}>
         <TextInput
         placeholder='mail'
         keyboardType='email-address'
@@ -41,31 +41,50 @@ class FormLogin extends Component {
         onPress={()=> this.logeo(this.state.email, this.state.password)}
         style={styles.btn}
         >
-        <Text>Ingresa</Text>
+        <Text  style={styles.btnText} >Login</Text>
 
         </TouchableOpacity>
-
+        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
+        <Text style={styles.btnText1}>No tenes cuenta? Registrate Aca</Text>
+        </TouchableOpacity>
     </View>
         )
   }
 }
 
-const styles = StyleSheet.create({
-    container:{
-        paddingHorizontal:16,
-        margin: 16
-    },
+const styles= StyleSheet.create({
     input:{
-        borderWidth:1,
-        borderColor: '#c3c3c3',
-        borderRadius:5,
+        borderWidth: 1,
+        borderColor: '#3d3d3d',
+        height:30,
+        borderRadius:10,
+        padding:15,
         marginTop:16,
-        padding:10
+        backgroundColor:'white'
+
     },
     btn:{
-        marginVertical:32,
-        backgroundColor:'#54d0e0',
+        backgroundColor:'gray',
+        borderRadius:10,
+        padding:16,
+        marginTop:48,
+
+    },
+    btnText:{
+        textAlign:'center',
+        color:'black',
+    },
+    form:{
+        flex:1,
+        backgroundColor: 'white',
+        margin: 0,
+        borderRadius:10,
+        padding:10,
+    },
+    btnText1:{
+        margin:10,
+        textAlign:'center',
+        color:'black'
     }
 })
-
 export default FormLogin

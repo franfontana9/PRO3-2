@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View, StyleSheet } from 'react-native'
 import FormLogin from '../components/FormLogin'
 
 class Login extends Component {
   render() {
     return (
-        <View>
-        <Text>Login</Text>
+        <View style={styles.btn}> 
         <FormLogin
         navigation={this.props.navigation}
         />
-        <Text>No tenes cuenta?
-        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
-          <Text>Registrate Aca</Text>
-        </TouchableOpacity>
-        </Text>
       </View>
     )
   }
 }
+
+const styles= StyleSheet.create({
+  btn:{
+     flex:1
+  }
+})
 
 export default Login

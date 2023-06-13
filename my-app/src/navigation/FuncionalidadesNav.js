@@ -12,6 +12,8 @@ function FunctionalidadesNav() {
         <Stack.Screen
             name='Feed'
             component={Feed}
+            options={{
+            headerShown:false}}
         />
         <Stack.Screen
             name='Comments'
