@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, TouchableOpacity, View, FlatList, StyleSheet } from 'react-native'
 import ProfileData from '../components/ProfileData'
+import { AntDesign } from '@expo/vector-icons';
 import { db, auth } from '../firebase/config'
 import Post from '../components/Post'
 
@@ -83,7 +84,9 @@ class Profile extends Component {
       <TouchableOpacity
         onPress={()=> this.logout()}
         >        
-        <Text>Sing Out</Text>
+        <Text style={styles.info1}>
+          <AntDesign name="logout" size={20} color="white" />
+           Sing Out</Text>
       </TouchableOpacity>  
 
     </View>    

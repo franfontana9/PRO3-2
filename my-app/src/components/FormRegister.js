@@ -66,7 +66,7 @@ class FormRegister extends Component {
 
         <TouchableOpacity
         style={styles.btn}
-        onPress={()=> this.registrarUsuario(this.state.inputMail, this.state.inputPassword)}
+        onPress={()=> this.registrarUsuario(this.state.inputMail, this.state.inputPassword, this.state.inputBio, this.state.inputUsername)}
         >
         <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
