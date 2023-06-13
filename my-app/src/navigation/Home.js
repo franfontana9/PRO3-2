@@ -6,7 +6,6 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import FunctionalidadesNav from '../navigation/FuncionalidadesNav';
 import Profile from '../screens/Profile'
 import NewPost from '../screens/NewPost';
-import Feed from '../screens/Feed';
 
 
 const Tab = createBottomTabNavigator()

@@ -17,6 +17,7 @@ export default function Posteos(props) {
 
 const styles = StyleSheet.create ({
    container: {
-    flex: 1
+    margin:20,
+    flex:1
    }
 })

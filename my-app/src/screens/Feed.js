@@ -34,11 +34,13 @@ class Feed extends Component {
     }
   render() {
     return (
-        <View styles={styles.container}>
+        <View style={styles.container}>
+            
             <Posteos
                 data={this.state.posts}
                 navigation={this.props.navigation}
             />
+
         </View>
         )
   }
@@ -46,7 +48,7 @@ class Feed extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        flex:1
+        flex:1,   
     }
 
 })
