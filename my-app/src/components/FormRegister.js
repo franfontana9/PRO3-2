@@ -20,8 +20,8 @@ class FormRegister extends Component {
             db.collection('users').add({
                 owner:auth.currentUser.email,
                 createdAt: Date.now(),
-                // inputBio: inputBio,
-                // inputUsername: inputUsername
+                inputBio: inputBio,
+                inputUsername: inputUsername
             })
             .then(resp=>console.log(resp))
             .catch(err=>console.log(err))
@@ -35,26 +35,26 @@ class FormRegister extends Component {
         <TextInput
         style={styles.input}
         keyboardType='email-address'
-        placeholder='email'
+        placeholder='Email'
         onChangeText={(text)=> this.setState({inputMail: text})}
         value={this.state.inputMail}
         />
 
-        {/* <TextInput
+        <TextInput
         style={styles.input}
         keyboardType='email-address'
         placeholder='User Name'
         onChangeText={(text)=> this.setState({inputUsername: text})}
         value={this.state.inputUsername}
-        /> */}
+        />
 
-        {/* <TextInput
+        <TextInput
         style = {styles.input}
-        placeholder= 'Escriba una bio'
+        placeholder= 'Mini Bio'
         keyboardType="default"
         onChangeText={(text) => this.setState({inputBio:text})}
         value={this.state.inputBio}
-        /> */}
+        />
 
         <TextInput
         style={styles.input}
@@ -68,12 +68,12 @@ class FormRegister extends Component {
         style={styles.btn}
         onPress={()=> this.registrarUsuario(this.state.inputMail, this.state.inputPassword)}
         >
-        <Text style={styles.btnText}>Registrarme</Text>
+        <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
         <TouchableOpacity 
         onPress={()=> this.props.navigation.navigate('Login')}
         >
-          <Text style={styles.btnText1}>Ya tenes cuenta? Ingresa Aca!</Text>
+          <Text style={styles.btnText1}>Already have an account? Sign In!</Text>
         </TouchableOpacity>
     </View>
         )

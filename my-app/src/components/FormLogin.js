@@ -21,7 +21,7 @@ class FormLogin extends Component {
     return (
     <View style={styles.form}>
         <TextInput
-        placeholder='mail'
+        placeholder='email'
         keyboardType='email-address'
         value={this.state.email}
         onChangeText={(text)=>this.setState({email:text})}
@@ -45,7 +45,7 @@ class FormLogin extends Component {
 
         </TouchableOpacity>
         <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
-        <Text style={styles.btnText1}>No tenes cuenta? Registrate Aca</Text>
+        <Text style={styles.btnText1}>Don't have an account? Sign Up Here!</Text>
         </TouchableOpacity>
     </View>
         )
