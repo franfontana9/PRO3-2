@@ -6,6 +6,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import FunctionalidadesNav from '../navigation/FuncionalidadesNav';
 import Profile from '../screens/Profile'
 import NewPost from '../screens/NewPost';
+import Buscador from '../screens/Buscador';
 
 
 const Tab = createBottomTabNavigator()
@@ -39,6 +40,11 @@ function HomeNav() {
                 tabBarIcon: ()=> 
                 <AntDesign name="user" size={24} color="black" /> 
         }}    
+        />
+
+        <Tab.Screen
+        name= 'Buscador'
+        component={Buscador}
         />
         
     </Tab.Navigator>
