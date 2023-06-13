@@ -59,6 +59,7 @@ class Post extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <View styles={styles.container}>
         <TouchableOpacity
@@ -123,7 +124,8 @@ const styles = StyleSheet.create ({
     marginVertical:16
   },
 img:{
-  height: 200 
+  height: 200,
+  width:200
 },
 btnsContainer:{
   flexDirection: 'row'

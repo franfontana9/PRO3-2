@@ -5,7 +5,7 @@ import { auth } from '../firebase/config'
 
 export default function Posteos(props) {
   return (
-    <View styles={styles.container}>
+    <View style={styles.container}>
       <FlatList
       data={props.data}
       keyExtractor={(item)=>item.id.toString()}
