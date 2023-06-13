@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AntDesign } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import FunctionalidadesNav from '../navigation/FuncionalidadesNav';
 import Profile from '../screens/Profile'
 import NewPost from '../screens/NewPost';
@@ -45,6 +46,11 @@ function HomeNav() {
         <Tab.Screen
         name= 'Buscador'
         component={Buscador}
+        options={{
+            headerShown:false,
+            tabBarIcon: ()=> 
+            <Feather name="search" size={24} color="black" />        
+        }}
         />
         
     </Tab.Navigator>

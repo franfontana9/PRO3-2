@@ -88,7 +88,7 @@ class Post extends Component {
             style={styles.btnComentario}
             onPress={() => this.props.navigation.navigate('Comments', { id: this.props.data.id })}
           >
-            <FontAwesome name='comment' size={24} color='grey' />
+          <FontAwesome name="comment-o" size={24} color="black" />          
           </TouchableOpacity>
         </View>
       </View>
@@ -122,7 +122,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding:10,
+  },
+   btnComentario: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding:10,
+    marginBottom:2
+  }
 
-  }})
+})
 
 export default Post
