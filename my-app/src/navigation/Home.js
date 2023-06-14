@@ -44,7 +44,7 @@ function HomeNav() {
         />
 
         <Tab.Screen
-        name= 'Buscador'
+        name= 'Search'
         component={Buscador}
         options={{
             headerShown:false,

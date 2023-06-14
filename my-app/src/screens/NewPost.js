@@ -49,6 +49,7 @@ class NewPost extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Text></Text>
                 {
                     this.state.foto === '' ?
                         <CamaraPosteos 

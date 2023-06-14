@@ -2,8 +2,7 @@ import { Text, View, TextInput, TouchableOpacity, StyleSheet} from 'react-native
 import React, { Component } from 'react'
 import { db, auth } from '../firebase/config'
 import firebase from 'firebase'
-import {FontAwesome} from '@expo/vector-icons'
-
+import { Feather } from '@expo/vector-icons';
 
 export default class ComentariosForm extends Component {
     constructor(props){
@@ -33,13 +32,12 @@ export default class ComentariosForm extends Component {
         style = {styles.input}
         onChangeText={text => this.setState({comentario: text})}
         value={this.state.comentario}
-        placeholder='Crea tu comentario'
+        placeholder='Add a comment...'
         />
-        <TouchableOpacity onPress={()=> this.crearComentario(this.state.comentario)}>
-        <FontAwesome
-            name='send' 
-            size={24} 
-             />  
+        <TouchableOpacity 
+            style={styles.send}
+            onPress={()=> this.crearComentario(this.state.comentario)}>
+            <Feather name="send" size={24} color="black" />
         </TouchableOpacity>
       </View>
     )
@@ -47,6 +45,11 @@ export default class ComentariosForm extends Component {
 }
 
 const styles= StyleSheet.create({
+    send:{
+        margin:10,
+        padding:10
+
+    },
     input:{
         borderWidth: 1,
         borderColor: '#3d3d3d',

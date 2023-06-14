@@ -69,17 +69,19 @@ export default class CamaraPosteos extends Component {
         ) : this.state.mostrarCamara === false && this.state.fotoTomada !== '' ? (
           <>
             <Image source={{ uri: this.state.fotoTomada }} style={styles.img} />
-            <View>
+            <View style={styles.btn}>
               <TouchableOpacity onPress={() => this.aceptarFoto()} style={styles.btnAceptarFoto}>
-                <Text>Aceptar foto</Text>
+                <Text style={styles.info1}>Accept photo</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => this.rechazarFoto()} style={styles.btnRechazarFoto}>
-                <Text>Rechazar foto</Text>
+                <Text style={styles.info1}>Retake photo</Text>
               </TouchableOpacity>
             </View>
           </>
         ) : (
-          <Text>No tienes permiso para usar la cámara</Text>
+        <View style={styles.permission}>
+         <Text style={styles.permissionText}>You don't have permission to use the camera</Text>
+        </View>
         )}
       </View>
     );
@@ -108,4 +110,44 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
   },
   btnTomarFotoInnerCircle: {
-    width: 60,}})
+    width: 60,
+},
+info1: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: 'black',
+    padding:10,
+    marginLeft: 120,
+    marginRight:120,
+    margin:10,
+    textAlign: 'center',
+    borderRadius:100,
+    backgroundColor:'grey'
+  },
+  btn:{
+},
+permission: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 20,
+  },
+  permissionText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  permissionButton: {
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: '#ccc',
+  },
+  permissionButtonText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#fff',
+  }
+})

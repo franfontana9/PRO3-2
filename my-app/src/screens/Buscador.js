@@ -39,20 +39,22 @@ export default class Buscador extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Buscador</Text>
+        <Text style={styles.title}>Search</Text>
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
-            placeholder="Ingresa tu email"
+            placeholder="Search"
             onChangeText={(text) => this.metodoFiltrador(text)}
           />
           <Text style={styles.searchIcon}>🔍</Text>
         </View>
+        <View style={styles.user1}>
         <FlatList
           data={this.state.usuarios}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <Text>{item.data.owner}</Text>}
+          renderItem={({ item }) => <Text style={styles.user}>{item.data.owner}</Text>}
         />
+        </View>
       </View>
     );
   }
@@ -88,4 +90,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 8,
   },
+  user:{
+    padding:10,
+    margin:5,
+    backgroundColor:'white',
+    borderRadius:20,
+    alignSelf:'center'
+    
+  }
 });
