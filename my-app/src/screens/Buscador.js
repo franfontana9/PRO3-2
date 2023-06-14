@@ -49,11 +49,14 @@ export default class Buscador extends Component {
           <Text style={styles.searchIcon}>🔍</Text>
         </View>
         <View style={styles.user1}>
+       {this.state.usuarios.length > 0?
         <FlatList
           data={this.state.usuarios}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <Text style={styles.user}>{item.data.owner}</Text>}
-        />
+          /> : 
+          <Text style= {styles.noResult}> No results found</Text> 
+          }
         </View>
       </View>
     );
@@ -96,6 +99,9 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     borderRadius:20,
     alignSelf:'center'
-    
+  },
+  noResult:{
+    color:'red',
+    fontWeight: 'bold',
   }
 });
