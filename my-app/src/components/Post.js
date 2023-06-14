@@ -9,7 +9,7 @@ class Post extends Component {
     super(props);
     this.state = {
       isLiked: true,
-      cantidadDeLikes: this.props.data.data.likes.length,
+      cantLikes: this.props.data.data.likes.length,
     };
   }
 
@@ -61,13 +61,13 @@ class Post extends Component {
     if(this.state.miLike === true){
         this.setState({
             miLike: false,
-            cantidadDeLikes: this.state.cantidadDeLikes -1,
+            cantLikes: this.state.cantLikes -1,
         })
         this.disLike()
     } else{
         this.setState({
             miLike: true,
-            cantidadDeLikes: this.state.cantidadDeLikes +1,
+            cantLikes: this.state. cantLikes +1,
         })
         this.likes()
     }
@@ -128,7 +128,7 @@ class Post extends Component {
           <FontAwesome name="comment-o" size={24} color="black" />          
           </TouchableOpacity>
         </View>
-          <Text style={styles. cantidad}>{this.state.cantidadDeLikes} likes</Text>
+          <Text style={styles. cantidad}>{this.state.cantLikes} likes</Text>
                         <Text style={styles. cantidad}>{this.props.data.data.comments.length} comentarios</Text>
       </View>
     );
