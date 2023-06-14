@@ -21,7 +21,7 @@ class FormLogin extends Component {
     return (
     <View style={styles.form}>
         <TextInput
-        placeholder='email'
+        placeholder='Email'
         keyboardType='email-address'
         value={this.state.email}
         onChangeText={(text)=>this.setState({email:text})}
@@ -37,15 +37,18 @@ class FormLogin extends Component {
         secureTextEntry={true}
         />
 
+        { this.state.email && this.state.password != '' ?
         <TouchableOpacity
         onPress={()=> this.logeo(this.state.email, this.state.password)}
         style={styles.btn}
         >
         <Text  style={styles.btnText} >Login</Text>
+        </TouchableOpacity> :
+            <Text style={styles.btnText2}>Complete Email and Password </Text>
+        }
 
-        </TouchableOpacity>
         <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
-        <Text style={styles.btnText1}>Don't have an account? Sign Up Here!</Text>
+        <Text style={styles.btnText1}>Don't have an account? <Text style={styles.color}>Sign Up Here!</Text></Text>
         </TouchableOpacity>
     </View>
         )
@@ -67,12 +70,13 @@ const styles= StyleSheet.create({
         backgroundColor:'gray',
         borderRadius:10,
         padding:16,
-        marginTop:48,
+        marginTop:10,
 
     },
     btnText:{
         textAlign:'center',
         color:'black',
+        fontWeight: 'bold',
     },
     form:{
         flex:1,
@@ -85,6 +89,15 @@ const styles= StyleSheet.create({
         margin:10,
         textAlign:'center',
         color:'black'
+    },
+    btnText2:{
+        margin:10,
+        textAlign:'center',
+        color:'red'
+    },
+    color:{
+        fontWeight: 'bold',
+        
     }
 })
 export default FormLogin

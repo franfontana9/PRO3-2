@@ -64,16 +64,20 @@ class FormRegister extends Component {
         secureTextEntry={true}
         />
 
+        { this.state.inputMail && this.state.inputPassword && this.state.nombreDeUsuario != '' ?
         <TouchableOpacity
         style={styles.btn}
         onPress={()=> this.registrarUsuario(this.state.inputMail, this.state.inputPassword, this.state.inputBio, this.state.inputUsername)}
         >
         <Text style={styles.btnText}>Register</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> :
+            <Text style={styles.btnText2}>Complete Email, Username and Password </Text>
+        }
+        
         <TouchableOpacity 
         onPress={()=> this.props.navigation.navigate('Login')}
         >
-          <Text style={styles.btnText1}>Already have an account? Sign In!</Text>
+          <Text style={styles.btnText1}>Already have an account? <Text style={styles.color}>Sign In!</Text></Text>
         </TouchableOpacity>
     </View>
         )
@@ -95,12 +99,13 @@ const styles= StyleSheet.create({
         backgroundColor:'gray',
         borderRadius:10,
         padding:16,
-        marginTop:48,
+        marginTop:10,
 
     },
     btnText:{
         textAlign:'center',
         color:'black',
+        fontWeight: 'bold',
     },
     form:{
         flex:1,
@@ -113,6 +118,15 @@ const styles= StyleSheet.create({
         margin:10,
         textAlign:'center',
         color:'black'
+    },
+    btnText2:{
+        margin:10,
+        textAlign:'center',
+        color:'red'
+    },
+    color:{
+        fontWeight: 'bold',
+        
     }
 })
 
