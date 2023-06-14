@@ -9,6 +9,7 @@ class Post extends Component {
     super(props);
     this.state = {
       isLiked: true,
+      cantidadDeLikes: this.props.data.data.likes.length,
     };
   }
 
@@ -36,6 +37,7 @@ class Post extends Component {
       .then((resp) => {
         this.setState({
           isLiked: false,
+          
         });
       })
       .catch((err) => console.log(err));
@@ -55,6 +57,33 @@ class Post extends Component {
       .catch((err) => console.log(err));
   }
 
+  botonLike(){
+    if(this.state.miLike === true){
+        this.setState({
+            miLike: false,
+            cantidadDeLikes: this.state.cantidadDeLikes -1,
+        })
+        this.disLike()
+    } else{
+        this.setState({
+            miLike: true,
+            cantidadDeLikes: this.state.cantidadDeLikes +1,
+        })
+        this.likes()
+    }
+}
+
+  deletePost(){
+    db.collection("posts")
+    .doc(this.props.data.id)
+    .delete()
+    .then(() => {
+        console.log('Post eliminado');
+    }).catch((e) => {
+        console.log(e);
+    });
+}
+
   render() {
     console.log(this.props);
     return (
@@ -68,6 +97,12 @@ class Post extends Component {
         >
           <Text>{this.props.data.data.userName}</Text>
         </TouchableOpacity>
+
+                  {this.state.owner === true ? 
+                            <TouchableOpacity onPress={() => this.deletePost()}>
+                                <FontAwesome name="trash-o" size={24} color="red" />
+                            </TouchableOpacity>
+                        : null } 
 
         <Image source={{ uri: this.props.data.data.foto }} style={styles.img} />
 
@@ -91,6 +126,8 @@ class Post extends Component {
           <FontAwesome name="comment-o" size={24} color="black" />          
           </TouchableOpacity>
         </View>
+          <Text style={styles. cantidad}>{this.state.cantidadDeLikes} likes</Text>
+                        <Text style={styles. cantidad}>{this.props.data.data.comments.length} comentarios</Text>
       </View>
     );
   }
@@ -128,7 +165,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding:10,
     marginBottom:2
-  }
+  },
+  cantidad: {
+    fontSize: 12,
+    color: 'black',
+    marginTop: 3
+}
 
 })
 

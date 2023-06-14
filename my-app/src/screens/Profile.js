@@ -82,7 +82,7 @@ class Profile extends Component {
           onPress={() => this.logout()}
         >
           <Text style={styles.info1}>
-            Sing Out</Text>
+            Sign Out</Text>
         </TouchableOpacity>
 
       </View>
