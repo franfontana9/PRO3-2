@@ -88,6 +88,8 @@ class Post extends Component {
     console.log(this.props);
     return (
       <View style={styles.container}>
+        
+        <View>
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate('ProfileAmigo', {
@@ -97,12 +99,12 @@ class Post extends Component {
         >
           <Text>{this.props.data.data.userName}</Text>
         </TouchableOpacity>
-
-                  {this.state.owner === true ? 
+                      {this.state.owner === true ? 
                             <TouchableOpacity onPress={() => this.deletePost()}>
-                                <FontAwesome name="trash-o" size={24} color="red" />
+                                <FontAwesome name="trash-o" size={48} color="black" />
                             </TouchableOpacity>
                         : null } 
+            </View>
 
         <Image source={{ uri: this.props.data.data.foto }} style={styles.img} />
 
