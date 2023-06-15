@@ -39,8 +39,13 @@ class NewPost extends Component {
             comments: comments,
             likes: likes,
             createdAt: Date.now(),
-        })
-            .then((resp) => {
+        }).then((resp) => {
+                this.setState({
+                    descripcion:'',
+                    foto:'',
+                    comments:[],
+                    likes:[]
+                })
                 this.props.navigation.navigate('Feed')
             })
             .catch(err => console.log(err))
