@@ -69,7 +69,7 @@ export default class Buscador extends Component {
           <FlatList
             data={this.state.usuariosEmail}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <Text style={styles.user}>{item.data.inputUsername}</Text>}
+            renderItem={({ item }) => <Text style={styles.user}  onPress={() =>this.props.navigation.navigate('ProfileAmigo', {email: item.data.owner})}>{item.data.owner}</Text>}
             /> : 
             <Text style= {styles.noResult}> No results found Email</Text> 
             }
@@ -78,7 +78,7 @@ export default class Buscador extends Component {
           <FlatList
             data={this.state.usuariosNombre}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <Text style={styles.user}>{item.data.owner}</Text>}
+            renderItem={({ item }) => <Text style={styles.user} onPress={() =>this.props.navigation.navigate('ProfileAmigo', {email: item.data.owner})}>{item.data.inputUsername}</Text>}
             /> : 
             <Text style= {styles.noResult}> No results found Nombre</Text> 
             }

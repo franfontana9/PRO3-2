@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, Image, StyleSheet, FlatList } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
@@ -86,6 +86,7 @@ class Post extends Component {
 
   render() {
     console.log(this.props);
+  
     return (
       <View style={styles.container}>
         
@@ -97,7 +98,7 @@ class Post extends Component {
             })
           }
         >
-          <Text>{this.props.data.data.userName}</Text>
+          <Text>{this.props.data.data.owner}</Text>
         </TouchableOpacity>
                       {this.props.data.data.owner == auth.currentUser.email?
                             <TouchableOpacity onPress={() => this.deletePost()}>
@@ -130,6 +131,8 @@ class Post extends Component {
         </View>
           <Text style={styles. cantidad}>{this.state.cantLikes} likes</Text>
                         <Text style={styles. cantidad}>{this.props.data.data.comments.length} comentarios</Text>
+    <FlatList data={this.props.data.data.comments.slice(-4)} keyExtractor={(data)=>data.createdAt} renderItem={({item})=><Text onPress={() =>this.props.navigation.navigate('ProfileAmigo', {email: item.owner})}>{item.owner}:{item.comentario}</Text> }>
+                    </FlatList>
       </View>
     );
   }

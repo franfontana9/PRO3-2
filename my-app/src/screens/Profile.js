@@ -59,12 +59,12 @@ class Profile extends Component {
     return (
       <View style={styles.container}>
         
-        <Text style= {styles.info}>{this.state.usuario.inputUsername}</Text>
+        <Text style= {styles.info}>{this.state.usuario[0]?.data.inputUsername}</Text>
 
         <TouchableOpacity style={styles.info}>
           <Text style={styles.info}></Text>
-          {this.state.usuario[0]?.data.bio != '' ?
-            <Text style={styles.info}>{this.state.usuario[0]?.data.bio}</Text>
+          {this.state.usuario[0]?.data.inputBio != '' ?
+            <Text style={styles.info}>{this.state.usuario[0]?.data.inputBio}</Text>
             : null}
 
           <Text>Cantidad de posteos: {this.state.posteos.length}</Text>
@@ -83,8 +83,8 @@ class Profile extends Component {
         >
           <Text style={styles.info1}>
             Sign Out</Text>
-        </TouchableOpacity>
-
+        </TouchableOpacity> 
+        <Text   onPress={() =>this.props.navigation.navigate('EditarPerfil')}>Editar mi Perfil</Text>
       </View>
     )
   }
