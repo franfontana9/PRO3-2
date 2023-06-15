@@ -7,8 +7,11 @@ export default class Buscador extends Component {
     super(props);
     this.state = {
       busqueda: '',
-      usuarios: [],
+      usuariosEmail: [],
       usuariosBackUp: [],
+      modoFiltro: "email",
+      usuariosNombre: [],
+      Busqueda: ""
     };
   }
 
@@ -30,13 +33,25 @@ export default class Buscador extends Component {
   }
 
   metodoFiltrador(loQueVamosAFiltrar) {
-    let arrayFiltrador = this.state.usuariosBackUp.filter((usuario) =>
+
+    this.setState({ busqueda: loQueVamosAFiltrar });
+   
+      let arrayFiltrador1 = this.state.usuariosBackUp.filter((usuario) =>
       usuario.data.owner.toLowerCase().includes(loQueVamosAFiltrar.toLowerCase())
     );
-    this.setState({ usuarios: arrayFiltrador });
+    this.setState({ usuariosEmail: arrayFiltrador1 });
+    
+      let arrayFiltrador2 = this.state.usuariosBackUp.filter((usuario) =>
+      usuario.data.inputUsername.toLowerCase().includes(loQueVamosAFiltrar.toLowerCase())
+    );
+    this.setState({ usuariosNombre: arrayFiltrador2 });
+    
+  
   }
 
-  render() {
+
+
+  render() { 
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Search</Text>
@@ -48,16 +63,27 @@ export default class Buscador extends Component {
           />
           <Text style={styles.searchIcon}>🔍</Text>
         </View>
-        <View style={styles.user1}>
-       {this.state.usuarios.length > 0?
-        <FlatList
-          data={this.state.usuarios}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <Text style={styles.user}>{item.data.owner}</Text>}
-          /> : 
-          <Text style= {styles.noResult}> No results found</Text> 
-          }
-        </View>
+        {this.state.busqueda == ""? <Text></Text>:
+         <View style={styles.user1}>
+         {this.state.usuariosEmail.length > 0?
+          <FlatList
+            data={this.state.usuariosEmail}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <Text style={styles.user}>{item.data.inputUsername}</Text>}
+            /> : 
+            <Text style= {styles.noResult}> No results found Email</Text> 
+            }
+  
+  {this.state.usuariosNombre.length > 0?
+          <FlatList
+            data={this.state.usuariosNombre}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <Text style={styles.user}>{item.data.owner}</Text>}
+            /> : 
+            <Text style= {styles.noResult}> No results found Nombre</Text> 
+            }
+          </View>}
+       
       </View>
     );
   }

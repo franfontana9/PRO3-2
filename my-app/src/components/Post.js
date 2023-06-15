@@ -99,9 +99,9 @@ class Post extends Component {
         >
           <Text>{this.props.data.data.userName}</Text>
         </TouchableOpacity>
-                      {this.state.owner === true ? 
+                      {this.props.data.data.owner == auth.currentUser.email?
                             <TouchableOpacity onPress={() => this.deletePost()}>
-                                <FontAwesome name="trash-o" size={48} color="black" />
+                                <FontAwesome name="trash-o" size={28} color="red" />
                             </TouchableOpacity>
                         : null } 
             </View>
