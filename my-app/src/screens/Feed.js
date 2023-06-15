@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, View, FlatList, StyleSheet } from 'react-native'
+import { Text, TouchableOpacity, View, FlatList, StyleSheet, Image } from 'react-native'
 import { auth, db } from '../firebase/config'
 import Posteos from '../components/Posteos'
 
@@ -33,8 +33,8 @@ class Feed extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.centered}>
-          <Text style={styles.welcomeText}>Bienvenidos a IG</Text>
-          <Text style={styles.postText}>Mira todos los posteos!</Text>
+        <Image source={require('../../assets/logotres.png')} style={styles.image} />
+        <Text style={styles.reactGramText}>ReactGram</Text>
         </View>
         <Posteos data={this.state.posts} navigation={this.props.navigation} />
       </View>
@@ -46,9 +46,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  image: {
+    width: 200, 
+    height: 100, 
+    //resizeMode: 'contain', 
+  },
   centered: {
     alignItems: 'center',
-    marginTop: 40
+    marginTop: 10,
+    marginBottom: 10,
+    marginTop: 40,
   },
   welcomeText: {
     fontSize: 24,
@@ -57,6 +64,12 @@ const styles = StyleSheet.create({
   },
   postText: {
     fontSize: 18
+  },
+
+  reactGramText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 10
   }
 })
 
