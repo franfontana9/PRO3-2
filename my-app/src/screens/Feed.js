@@ -35,8 +35,9 @@ class Feed extends Component {
   render() {
     return (
         <View style={styles.container1}>
-            
-            <Posteos
+        <Text>Bienvenidos a IG</Text>
+        <Text>Mira todos los posteos!</Text>
+        <Posteos
                 data={this.state.posts}
                 navigation={this.props.navigation}
             />

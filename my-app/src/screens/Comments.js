@@ -23,13 +23,14 @@ export default class Comments extends Component {
     }
   render() {
     return (
+
       <View style={styles.btn}>
          <FlatList
             data={this.state.data.comments}
             keyExtractor={item => item.createdAt.toString()}
             renderItem={({item}) => <View style={styles.commentContainer}>
             <FontAwesome name="user" size={24} color="#D8E7EB" />
-            <Text>{item.comentario}</Text>
+            <Text   onPress={() =>this.props.navigation.navigate('ProfileAmigo', {email: item.owner})}>{item.owner}:{item.comentario}</Text>
         </View>
         }
             
