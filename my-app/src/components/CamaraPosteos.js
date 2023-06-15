@@ -18,7 +18,7 @@ export default class CamaraPosteos extends Component {
       .then((resp) => this.setState({ mostrarCamara: true }))
       .catch((err) => console.log(err));
   }
-
+  
   tomarFoto() {
     this.metodosCamara
       .takePictureAsync()
@@ -55,7 +55,7 @@ export default class CamaraPosteos extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.state.mostrarCamara && this.state.fotoTomada === '' ? (
+        {this.state.mostrarCamara && this.state.fotoTomada === '' ? 
           <>
             <Camera
               style={styles.camara}
@@ -66,7 +66,7 @@ export default class CamaraPosteos extends Component {
               <View style={styles.btnTomarFotoInnerCircle}></View>
             </TouchableOpacity>
           </>
-        ) : this.state.mostrarCamara === false && this.state.fotoTomada !== '' ? (
+         : this.state.mostrarCamara === false && this.state.fotoTomada !== '' ? 
           <>
             <Image source={{ uri: this.state.fotoTomada }} style={styles.img} />
             <View style={styles.btn}>
@@ -78,11 +78,11 @@ export default class CamaraPosteos extends Component {
               </TouchableOpacity>
             </View>
           </>
-        ) : (
+        : 
         <View style={styles.permission}>
          <Text style={styles.permissionText}>You don't have permission to use the camera</Text>
         </View>
-        )}
+        }
       </View>
     );
   }

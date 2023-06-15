@@ -1,7 +1,7 @@
 import { Text, View, TextInput, TouchableOpacity, StyleSheet} from 'react-native'
 import React, { Component } from 'react'
 import { db, auth } from '../firebase/config'
-import firebase from 'firebase'
+import firebase from 'firebase';
 import { Feather } from '@expo/vector-icons';
 
 export default class ComentariosForm extends Component {
@@ -20,7 +20,12 @@ export default class ComentariosForm extends Component {
                 owner: auth.currentUser.email,
                 createdAt: Date.now(),
                 comentario: comentario
+            }) 
+        }).then(()=>{
+            this.setState({
+                comentario:''
             })
+            .catch((err)=>console.log(err))
         })
     }
 

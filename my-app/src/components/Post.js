@@ -37,7 +37,7 @@ class Post extends Component {
       .then((resp) => {
         this.setState({
           isLiked: false,
-          
+
         });
       })
       .catch((err) => console.log(err));
@@ -57,55 +57,55 @@ class Post extends Component {
       .catch((err) => console.log(err));
   }
 
-  botonLike(){
-    if(this.state.miLike === true){
-        this.setState({
-            miLike: false,
-            cantLikes: this.state.cantLikes -1,
-        })
-        this.disLike()
-    } else{
-        this.setState({
-            miLike: true,
-            cantLikes: this.state. cantLikes +1,
-        })
-        this.likes()
+  botonLike() {
+    if (this.state.miLike === true) {
+      this.setState({
+        miLike: false,
+        cantLikes: this.state.cantLikes - 1,
+      })
+      this.disLike()
+    } else {
+      this.setState({
+        miLike: true,
+        cantLikes: this.state.cantLikes + 1,
+      })
+      this.likes()
     }
-}
+  }
 
-  deletePost(){
+  deletePost() {
     db.collection("posts")
-    .doc(this.props.data.id)
-    .delete()
-    .then(() => {
+      .doc(this.props.data.id)
+      .delete()
+      .then(() => {
         console.log('Post eliminado');
-    }).catch((e) => {
+      }).catch((e) => {
         console.log(e);
-    });
-}
+      });
+  }
 
   render() {
     console.log(this.props);
-  
+
     return (
       <View style={styles.container}>
-        
+
         <View>
-        <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.navigate('ProfileAmigo', {
-              email: this.props.data.data.owner,
-            })
-          }
-        >
-          <Text>{this.props.data.data.owner}</Text>
-        </TouchableOpacity>
-                      {this.props.data.data.owner == auth.currentUser.email?
-                            <TouchableOpacity onPress={() => this.deletePost()}>
-                                <FontAwesome name="trash-o" size={28} color="red" />
-                            </TouchableOpacity>
-                        : null } 
-            </View>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('ProfileAmigo', {
+                email: this.props.data.data.owner,
+              })
+            }
+          >
+            <Text>{this.props.data.data.owner}</Text>
+          </TouchableOpacity>
+          {this.props.data.data.owner == auth.currentUser.email ?
+            <TouchableOpacity onPress={() => this.deletePost()}>
+              <FontAwesome name="trash-o" size={28} color="red" />
+            </TouchableOpacity>
+            : null}
+        </View>
 
         <Image source={{ uri: this.props.data.data.foto }} style={styles.img} />
 
@@ -126,13 +126,16 @@ class Post extends Component {
             style={styles.btnComentario}
             onPress={() => this.props.navigation.navigate('Comments', { id: this.props.data.id })}
           >
-          <FontAwesome name="comment-o" size={24} color="black" />          
+            <FontAwesome name="comment-o" size={24} color="black" />
           </TouchableOpacity>
         </View>
-          <Text style={styles. cantidad}>{this.state.cantLikes} likes</Text>
-                        <Text style={styles. cantidad}>{this.props.data.data.comments.length} comentarios</Text>
-    <FlatList data={this.props.data.data.comments.slice(-4)} keyExtractor={(data)=>data.createdAt} renderItem={({item})=><Text onPress={() =>this.props.navigation.navigate('ProfileAmigo', {email: item.owner})}>{item.owner}:{item.comentario}</Text> }>
-                    </FlatList>
+        <Text style={styles.cantidad}>{this.state.cantLikes} likes</Text>
+        <Text style={styles.cantidad}>{this.props.data.data.comments.length} comentarios</Text>
+        <FlatList
+          data={this.props.data.data.comments.slice(-4)}
+          keyExtractor={(data) => data.createdAt}
+          renderItem={({ item }) => <Text onPress={() => this.props.navigation.navigate('ProfileAmigo', { email: item.owner })}>{item.owner}:{item.comentario}</Text>}>
+        </FlatList>
       </View>
     );
   }
@@ -163,19 +166,19 @@ const styles = StyleSheet.create({
   btnLike: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding:10,
+    padding: 10,
   },
-   btnComentario: {
+  btnComentario: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding:10,
-    marginBottom:2
+    padding: 10,
+    marginBottom: 2
   },
   cantidad: {
     fontSize: 12,
     color: 'black',
     marginTop: 3
-}
+  }
 
 })
 
