@@ -23,6 +23,10 @@ function FunctionalidadesNav() {
           name='ProfileAmigo'
           component={ProfileAmigo}
         />
+        <Stack.Screen
+          name='EditarPerfil'
+          component={EditPerfil}
+        />
       </Stack.Navigator>
     )
 }
