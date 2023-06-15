@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Feed from '../screens/Feed'
 import Comments from '../screens/Comments'
 import ProfileAmigo from '../screens/ProfileAmigo'
+import EditPerfil from '../screens/EditPerfil'
 const Stack = createNativeStackNavigator()
 
 function FunctionalidadesNav() {
