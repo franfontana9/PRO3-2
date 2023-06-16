@@ -92,6 +92,7 @@ class Post extends Component {
 
         <View>
           <TouchableOpacity
+           style={styles.nombre}
             onPress={() =>
               this.props.navigation.navigate('ProfileAmigo', {
                 email: this.props.data.data.owner,
@@ -134,7 +135,7 @@ class Post extends Component {
         <FlatList
           data={this.props.data.data.comments.slice(-4)}
           keyExtractor={(data) => data.createdAt}
-          renderItem={({ item }) => <Text onPress={() => this.props.navigation.navigate('ProfileAmigo', { email: item.owner })}>{item.owner}:{item.comentario}</Text>}>
+          renderItem={({ item }) => <Text    style={styles.coment} onPress={() => this.props.navigation.navigate('ProfileAmigo', { email: item.owner })}>{item.owner}:{item.comentario}</Text>}>
         </FlatList>
       </View>
     );
@@ -178,6 +179,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: 'black',
     marginTop: 3
+  },
+  nombre: {
+    fontSize: 12,
+    color: 'black',
+    margin: 10,
+    textAlign:'left',
+  },
+  coment: {
+    fontSize: 10,
+
   }
 
 })
