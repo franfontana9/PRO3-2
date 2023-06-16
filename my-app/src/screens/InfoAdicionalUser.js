@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import MyImagePicker from '../components/MyImagePicker';
 
 export default class InfoAdicionalUser extends Component {
-  constructor() {
+  constructor(props) {
+      super(props)
+      
     return (
         <View>
             <Text>Aqui vamos a cargar la informacion adicional</Text>
