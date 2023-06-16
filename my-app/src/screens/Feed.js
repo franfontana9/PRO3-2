@@ -44,7 +44,7 @@ class Feed extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   image: {
     width: 200, 

@@ -16,14 +16,13 @@ class FormRegister extends Component {
     registrarUsuario(mail, password, inputBio, inputUsername){
         auth.createUserWithEmailAndPassword(mail, password)
         .then( data=> {
-            this.props.navigation.navigate('HomeNav')
             db.collection('users').add({
                 owner:auth.currentUser.email,
                 createdAt: Date.now(),
                 inputBio: inputBio,
                 inputUsername: inputUsername
             })
-            .then(resp=>console.log(resp))
+            .then(resp=>this.props.navigation.navigate('InfoAdicionalUser'))
             .catch(err=>console.log(err))
         })
         .catch(err=>console.log(err))
