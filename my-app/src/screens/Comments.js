@@ -31,19 +31,21 @@ export default class Comments extends Component {
           keyExtractor={(item) => item.createdAt.toString()}
           renderItem={({ item }) => (
             <View style={styles.commentContainer}>
-              <FontAwesome name="user" size={24} color="#D8E7EB" />
-              <Text onPress={() => this.props.navigation.navigate('ProfileAmigo', { email: item.owner })}>
+              <FontAwesome name="user" size={30} color="grey" />
+              <Text onPress={() => this.props.navigation.navigate('Friend Profile', { email: item.owner })}>
                 {item.owner}: {item.comentario}
               </Text>
             </View>
           )}
           ListEmptyComponent={() => (
             <View style={styles.emptyContainer}>
-              <Text>There are no comments yet. Be the first to comment!</Text>
+              <Text styles={styles.text}>There are no comments yet. Be the first to comment!</Text>
             </View>
           )}
         />
-        <ComentariosForm idPost={this.props.route.params.id} />
+        <ComentariosForm
+         idPost={this.props.route.params.id}
+          />
       </View>
     );
   }
@@ -58,11 +60,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: 300,
-    color: 'white'
+    color: 'white',
+    padding:10,
   },
   emptyContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    fontWeight:'bold',
+    margin:50
   }
 });

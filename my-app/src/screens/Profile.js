@@ -75,7 +75,7 @@ class Profile extends Component {
     
           <TouchableOpacity
             style={styles.editButton}
-            onPress={() => this.props.navigation.navigate('Edit Profile')}
+            onPress={() => this.props.navigation.navigate('Back to Profile')}
           >
             <Text style={styles.editButtonText}>Edit Profile</Text>
           </TouchableOpacity>
@@ -90,6 +90,7 @@ class Profile extends Component {
       )
     }
   }
+  
   
   const styles = StyleSheet.create({
     container: {
@@ -152,10 +153,11 @@ class Profile extends Component {
       marginBottom: 5,
       borderRadius: 100,
       alignSelf: 'center',
-      borderWidth: 1,
-      borderColor: 'black',
-      marginTop:10
+      borderWidth: 3, // Increase the border width to 3
+      borderColor: 'black', // Border color remains black
+      marginTop: 10,
     },
   });
   
-  export default Profile
+  export default Profile;
+  

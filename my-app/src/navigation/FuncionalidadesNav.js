@@ -25,7 +25,7 @@ function FunctionalidadesNav() {
           component={ProfileAmigo}
         />
         <Stack.Screen
-          name='Edit Profile'
+          name='Back to Profile'
           component={EditPerfil}
         />
       </Stack.Navigator>

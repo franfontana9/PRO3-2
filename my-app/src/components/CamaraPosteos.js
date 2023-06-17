@@ -69,7 +69,7 @@ export default class CamaraPosteos extends Component {
         ) : this.state.mostrarCamara === false && this.state.fotoTomada !== '' ? (
           <>
             <Image source={{ uri: this.state.fotoTomada }} style={styles.img} />
-            <View style={styles.btn}>
+            <View style={styles.btnContainer}>
               <TouchableOpacity onPress={() => this.aceptarFoto()} style={styles.btnAceptarFoto}>
                 <Text style={styles.info1}>Accept Photo</Text>
               </TouchableOpacity>
@@ -107,49 +107,52 @@ const styles = StyleSheet.create({
     width: 55,
     height: 55,
     borderRadius: 35,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)'
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
 },
 btnTomarFotoInnerCircle: {
-    width: 60,
-  },
-  info1: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: 'black',
-    padding: 10,
-    marginLeft: 120,
-    marginRight: 120,
-    margin: 10,
-    textAlign: 'center',
-    borderRadius: 100,
-    backgroundColor: 'grey',
-  },
-  btn: {
-    // Add your button styles here if needed
-  },
-  permission: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-  permissionText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  permissionButton: {
-    padding: 10,
-    borderRadius: 5,
-    backgroundColor: '#ccc',
-  },
-  permissionButtonText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#fff',
-  },
+  width: 60,
+},
+btnContainer: {
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginTop: 20,
+  marginBottom:10
+},
+info1: {
+  fontSize: 13,
+  fontWeight: '600',
+  color: 'black',
+  padding: 10,
+  marginHorizontal: 10,
+  textAlign: 'center',
+  borderRadius: 100,
+  backgroundColor: 'grey',
+},
+btn: {
+},
+permission: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#fff',
+  padding: 20,
+},
+permissionText: {
+  fontSize: 16,
+  fontWeight: 'bold',
+  textAlign: 'center',
+  marginBottom: 10,
+},
+permissionButton: {
+  padding: 10,
+  borderRadius: 5,
+  backgroundColor: '#ccc',
+},
+permissionButtonText: {
+  fontSize: 14,
+  fontWeight: 'bold',
+  textAlign: 'center',
+  color: '#fff',
+},
 });
-

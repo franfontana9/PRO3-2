@@ -110,69 +110,69 @@ class EditPerfil extends Component {
           style={styles.button}
 
           onPress={() => this.actualizar(this.state.inputPassword, this.state.inputUsername, this.state.inputBio)}>
-          <Text style={styles.buttonText}>Edit Profile</Text>
+          <Text style={styles.buttonText}>Save</Text>
           </TouchableOpacity>
     
           {this.state.errorAlEditar == false ? <Text></Text> : <Text style={styles.errorText}>Deleting your profile requires a delicate operation. Log in again to proceed.</Text>}
     
-          <Text style={styles.returnLink} onPress={() => this.props.navigation.navigate("Profile")}>Back to Profile</Text>
         </View>
       )
     }
   }    
 
-    const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: 'white'
-      },
-      title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: 'black',
-        marginTop: 40
-      },
-      subtitle: {
-        fontSize: 16,
-        color: 'black',
-        textAlign: 'center',
-        marginHorizontal: 20,
-        marginTop: 10
-      },
-      input: {
-        width: '80%',
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        borderRadius: 5,
-        marginTop: 20,
-        paddingHorizontal: 10
-      },
-      button: {
-        marginTop: 60,
-        backgroundColor: '#3897f0',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 20
-      },
-      buttonText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold'
-      },
-      errorText: {
-        color: 'red',
-        fontSize: 14,
-        marginTop: 10,
-        textAlign: 'center'
-      },
-      returnLink: {
-        color: '#3897f0',
-        fontSize: 14,
-        marginTop: 20,
-        fontWeight: 'bold',
-      }
-    })
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      backgroundColor: 'white'
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: 'black',
+      marginTop: 40
+    },
+    subtitle: {
+      fontSize: 16,
+      color: 'black',
+      textAlign: 'center',
+      marginHorizontal: 20,
+      marginTop: 10
+    },
+    input: {
+      width: '80%',
+      height: 40,
+      borderColor: 'gray',
+      borderWidth: 1,
+      borderRadius: 5,
+      marginTop: 20,
+      paddingHorizontal: 10,
+      fontSize: 16,
+    },
+    button: {
+      marginTop: 60,
+      backgroundColor: '#3897f0',
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      borderRadius: 20
+    },
+    buttonText: {
+      color: 'white',
+      fontSize: 16,
+      fontWeight: 'bold'
+    },
+    errorText: {
+      color: 'red',
+      fontSize: 14,
+      marginTop: 10,
+      textAlign: 'center'
+    },
+    returnLink: {
+      color: '#3897f0',
+      fontSize: 14,
+      marginTop: 20,
+      fontWeight: 'bold',
+    }
+  });
   
-export default EditPerfil
+  export default EditPerfil;

@@ -1,5 +1,5 @@
-import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import React, { Component } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default class FormPost extends Component {
   render() {
@@ -14,7 +14,7 @@ export default class FormPost extends Component {
           multiline={true}
           numberOfLines={5}
         />
-       
+        
       </View>
     );
   }
@@ -22,6 +22,7 @@ export default class FormPost extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 10,
@@ -30,20 +31,22 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   input: {
+    flex: 1,
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 1,
-    borderColor: '#DDD',
+    borderColor: '#E0E0E0',
     borderRadius: 5,
     fontSize: 16,
     color: '#333',
     marginBottom: 10,
   },
   button: {
-    backgroundColor: '#6495ED',
+    alignSelf: 'flex-end',
+    backgroundColor: '#3897f1',
     borderRadius: 5,
-    paddingVertical: 10,
-    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
   },
   buttonText: {
     color: '#FFF',

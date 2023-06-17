@@ -67,7 +67,7 @@ class FormRegister extends Component {
         secureTextEntry={true}
         />
 
-        { this.state.inputMail && this.state.inputPassword && this.state.nombreDeUsuario != '' ?
+        { this.state.inputMail && this.state.inputPassword && this.state.inputUsername != '' ?
         <TouchableOpacity
         style={styles.btn}
         onPress={()=> this.registrarUsuario(this.state.inputMail, this.state.inputPassword, this.state.inputBio, this.state.inputUsername)}

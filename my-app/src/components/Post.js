@@ -88,7 +88,6 @@ class Post extends Component {
 
     return (
       <View style={styles.container}>
-
         <View style={styles.infoContainer}>
           <TouchableOpacity
             style={styles.nombre}
@@ -100,11 +99,6 @@ class Post extends Component {
           >
             <Text>{this.props.data.data.owner}</Text>
           </TouchableOpacity>
-          {this.props.data.data.owner == auth.currentUser.email ? (
-            <TouchableOpacity onPress={() => this.deletePost()}>
-              <FontAwesome name="trash-o" size={20} color="red" />
-            </TouchableOpacity>
-          ) : null}
         </View>
 
         <Image source={{ uri: this.props.data.data.foto }} style={styles.img} />
@@ -122,30 +116,37 @@ class Post extends Component {
             </TouchableOpacity>
           )}
 
-<TouchableOpacity
-              style={styles.btnComentario}
-              onPress={() => this.props.navigation.navigate('Comments', { id: this.props.data.id })}
-            >
-              <FontAwesome name="comment-o" size={24} color="black" />
-            </TouchableOpacity>
-          </View>
-
-          <Text style={styles.cantidad}>{this.state.cantLikes} likes</Text>
-          <Text style={styles.cantidad}>{this.props.data.data.comments.length} comentarios</Text>
-          
-          <FlatList
-            data={this.props.data.data.comments.slice(-4)}
-            keyExtractor={(data) => data.createdAt}
-            renderItem={({ item }) => (
-              <Text style={styles.coment} onPress={() => this.props.navigation.navigate('ProfileAmigo', { email: item.owner })}>
-                {item.owner}:{item.comentario}
-              </Text>
-            )}
-          />
+          <TouchableOpacity
+            style={styles.btnComentario}
+            onPress={() => this.props.navigation.navigate('Comments', { id: this.props.data.id })}
+          >
+            <FontAwesome name="comment-o" size={24} color="black" />
+          </TouchableOpacity>
         </View>
-      );
-    }
+
+        <Text style={styles.cantidad}>{this.state.cantLikes} likes</Text>
+        <Text style={styles.cantidad}>{this.props.data.data.comments.length} comentarios</Text>
+
+        <FlatList
+          data={this.props.data.data.comments.slice(-4)}
+          keyExtractor={(data) => data.createdAt}
+          renderItem={({ item }) => (
+            <Text style={styles.coment} onPress={() => this.props.navigation.navigate('Friend Profile', { email: item.owner })}>
+              {item.owner}:{item.comentario}
+            </Text>
+          )}
+        />
+
+        {this.props.data.data.owner == auth.currentUser.email ? (
+          <TouchableOpacity style={styles.trashIcon} onPress={() => this.deletePost()}>
+            <FontAwesome name="trash-o" size={20} color="red" />
+          </TouchableOpacity>
+        ) : null}
+      </View>
+    );
+  }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -194,11 +195,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: 'black',
     margin: 10,
-    textAlign:'left',
+    textAlign: 'left',
   },
   coment: {
     fontSize: 10,
-  }
+  },
+  trashIcon: {
+    position: 'absolute',
+    top: '50%',
+    right: 10,
+    transform: [{ translateY: 160 }],
+  },
 });
 
 export default Post;

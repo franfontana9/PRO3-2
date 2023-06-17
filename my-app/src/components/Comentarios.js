@@ -5,29 +5,29 @@ import firebase from 'firebase';
 import { Feather } from '@expo/vector-icons';
 
 export default class ComentariosForm extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      comentario:''
+    constructor(props){
+        super(props)
+        this.state = {
+            comentario:''
+        }
     }
-  }
 
-  crearComentario(comentario){
-    db.collection('posts')
-      .doc(this.props.idPost)
-      .update({
-        comments: firebase.firestore.FieldValue.arrayUnion({
-          owner: auth.currentUser.email,
-          createdAt: Date.now(),
-          comentario: comentario
-        }) 
-      }).then(()=>{
-        this.setState({
-          comentario:''
+    crearComentario(comentario){
+        db.collection('posts')
+        .doc(this.props.idPost)
+        .update({
+            comments: firebase.firestore.FieldValue.arrayUnion({
+                owner: auth.currentUser.email,
+                createdAt: Date.now(),
+                comentario: comentario
+            }) 
+        }).then(()=>{
+            this.setState({
+                comentario:''
+            })
         })
-      })
-      .catch((err)=>console.log(err))
-  }
+        .catch((err)=>console.log(err))
+    }
 
   render() {
     return (
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: 10,
+    marginTop: 0,
     padding: 10,
     backgroundColor: '#FAFAFA',
     borderRadius: 5,
@@ -79,6 +79,5 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 8,
     paddingHorizontal: 12,
-    minWidth: 60, // Added property to set a minimum width
   },
 });
