@@ -1,9 +1,8 @@
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import Post from './Post'
-import { auth } from '../firebase/config'
 
-export default function Posteos(props) {
+function Posteos(props) {
   return (
     <View style={styles.container}>
       <FlatList
@@ -21,3 +20,5 @@ const styles = StyleSheet.create ({
     flex:1
    }
 })
+
+export default Posteos

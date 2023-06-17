@@ -21,11 +21,11 @@ function FunctionalidadesNav() {
             component={Comments}
         />
         <Stack.Screen
-          name='ProfileAmigo'
+          name='Friend Profile'
           component={ProfileAmigo}
         />
         <Stack.Screen
-          name='EditarPerfil'
+          name='Edit Profile'
           component={EditPerfil}
         />
       </Stack.Navigator>

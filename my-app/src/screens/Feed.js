@@ -33,7 +33,6 @@ class Feed extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.centered}>
-        <Image source={require('../../assets/logotres.png')} style={styles.image} />
         <Text style={styles.reactGramText}>ReactGram</Text>
         </View>
         <Posteos data={this.state.posts} navigation={this.props.navigation} />
@@ -45,6 +44,7 @@ class Feed extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    
   },
   image: {
     width: 200, 
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
     marginBottom: 10,
-    marginTop: 40,
+    marginTop: 10,
   },
   welcomeText: {
     fontSize: 24,

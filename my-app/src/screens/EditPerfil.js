@@ -1,172 +1,178 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput,TouchableOpacity, StyleSheet} from 'react-native';  
-import {auth, db} from '../firebase/config';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { auth, db } from '../firebase/config';
 import firebase from 'firebase';
 import "firebase/firestore";
 
 class EditPerfil extends Component {
-    constructor() {
-        super()
-        this.state = {
-            usuario:[],
-            inputPassword:'',
-            errorAlEditar:false,
-          errores:''
-            }
-    }
-    componentDidMount() {
-       
-        db.collection('users').where('owner','==', auth.currentUser.email).onSnapshot(
-            (docs)=>{
-            let user =[]
-            docs.forEach((doc)=>{
-                user.push({
-                    id:doc.id, 
-                    data:doc.data(), 
-                })
-            })
-            this.setState({
-             usuario:user,
-             inputUsername:user[0].data.inputUsername,
-             inputBio:user[0].data.inputBio
-            })
-            }
-        )
-    }
-    actualizar(inputPassword,inputUsername,inputBio) {
-      if ( inputPassword=='') {
-        db.collection('users').doc(this.state.usuario[0].id).update({
-            inputUsername: inputUsername,
-            inputBio:inputBio
-        }) .then(()=>{
-            this.props.navigation.navigate("Profile")
-        })
-      } else {
-        console.log(inputPassword);
-        firebase.auth().currentUser.updatePassword(inputPassword)
-        .then(()=>{
-            db.collection('users').doc(this.state.usuario[0].id).update({
-                inputUsername: inputUsername,
-                inputBio:inputBio
-            }) .then(()=>{
-                this.props.navigation.navigate("Login")
-            }) 
-            .catch((error)=>{
-                console.log(error);
-                this.setState({
-                    errorAlEditar: true
-                })  
-        })
-    })
+  constructor() {
+    super();
+    this.state = {
+      usuario: [],
+      inputPassword: '',
+      inputUsername: '',
+      inputBio: '',
+      errorAlEditar: false,
+      errores: ''
+    };
+  }
+
+  componentDidMount() {
+    db.collection('users').where('owner', '==', auth.currentUser.email).onSnapshot(
+      (docs) => {
+        let user = [];
+        docs.forEach((doc) => {
+          user.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        if (user.length > 0) {
+          const { inputUsername, inputBio } = user[0].data;
+          this.setState({
+            usuario: user,
+            inputUsername: inputUsername || '',
+            inputBio: inputBio || ''
+          });
+        }
       }
-    }
-   
-    render(){
-        console.log(this.state.usuario);
-        return(
-            <View style={styles.contenedor}>
-                   <Text style={styles.titulo} > Edit Profile </Text>
-                   <Text style={styles.texto5}>If you don't enter a new password, the previous one will remain UNCHANGED.</Text>
-                  <TextInput style={styles.texto2}
-             placeholder='password' 
-             keyboardType='password'
-             onChangeText={texto=>this.setState({inputPassword:texto})}
-             value= {this.state.inputPassword}
-             />
-               <TextInput  style={styles.texto3}
-             placeholder='username' 
-             keyboardType='default'
-             onChangeText={texto=>this.setState({inputUsername:texto})}
-             value= {this.state?.inputUsername}
-             />
-               <TextInput style={styles.texto4}
-             placeholder='bio' 
-             keyboardType='default'
-             onChangeText={texto=>this.setState({inputBio:texto})}
-             value= {this.state?.inputBio}
-             />
-               
-        
-              <  TouchableOpacity onPress={()=>this.actualizar(this.state.inputPassword,this.state.inputUsername,this.state.inputBio)}> 
-              <Text style={styles.texto7}> Edit Profile </Text>
-            </TouchableOpacity>
-            {this.state.errorAlEliminar == false ? <Text> </Text> :  <Text style={styles.texto6}>Deleting your profile requires a delicate operation. Log in again to proceed.</Text>}
-           
-<Text style={styles.texto8} onPress={() => this.props.navigation.navigate("Profile")}> Return to Profile</Text>
-         </View>
-       
-        )
-    }
-}
+    );
+  }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      const { inputUsername, inputBio } = this.state.usuario[0].data;
+      this.setState({
+        inputUsername: inputUsername || '',
+        inputBio: inputBio || ''
+      });
+    }
+  }
 
-const styles = StyleSheet.create({
-    contenedor: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#fff',
-    },
-    titulo: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 20,
-    },
-    texto2: {
-      width: '80%',
-      height: 40,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      borderRadius: 5,
-      paddingLeft: 10,
-      marginBottom: 10,
-    },
-    texto3: {
-      width: '80%',
-      height: 40,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      borderRadius: 5,
-      paddingLeft: 10,
-      marginBottom: 10,
-    },
-    texto4: {
-      width: '80%',
-      height: 100,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      borderRadius: 5,
-      paddingLeft: 10,
-      marginBottom: 10,
-      textAlignVertical: 'top',
-    },
-    texto5: {
-        fontSize: 14,
-        marginBottom: 10,
-        marginLeft: 10, 
+  actualizar(inputPassword, inputUsername, inputBio) {
+    if (inputPassword === '') {
+      db.collection('users').doc(this.state.usuario[0].id).update({
+        inputUsername: inputUsername,
+        inputBio: inputBio
+      }).then(() => {
+        this.props.navigation.navigate("Profile");
+      });
+    } else {
+      console.log(inputPassword);
+      firebase.auth().currentUser.updatePassword(inputPassword)
+        .then(() => {
+          db.collection('users').doc(this.state.usuario[0].id).update({
+            inputUsername: inputUsername,
+            inputBio: inputBio
+          }).then(() => {
+            this.props.navigation.navigate("Login");
+          }).catch((error) => {
+            console.log(error);
+            this.setState({
+              errorAlEditar: true
+            });
+          });
+        });
+    }
+  }
+
+  render() {
+    console.log(this.state.usuario);
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Edit Your Profile</Text>
+
+        <TextInput
+          style={styles.input}
+          placeholder="New Password"
+          keyboardType="default"
+          onChangeText={(texto) => this.setState({ inputPassword: texto })}
+          value={this.state.inputPassword}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="New Username"
+          keyboardType="default"
+          onChangeText={(texto) => this.setState({ inputUsername: texto })}
+          value={this.state.inputUsername}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="New Bio"
+          keyboardType="default"
+          onChangeText={(texto) => this.setState({ inputBio: texto })}
+          value={this.state.inputBio}
+        />
+
+        <TouchableOpacity
+          style={styles.button}
+
+          onPress={() => this.actualizar(this.state.inputPassword, this.state.inputUsername, this.state.inputBio)}>
+          <Text style={styles.buttonText}>Edit Profile</Text>
+          </TouchableOpacity>
+    
+          {this.state.errorAlEditar == false ? <Text></Text> : <Text style={styles.errorText}>Deleting your profile requires a delicate operation. Log in again to proceed.</Text>}
+    
+          <Text style={styles.returnLink} onPress={() => this.props.navigation.navigate("Profile")}>Back to Profile</Text>
+        </View>
+      )
+    }
+  }    
+
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: 'white'
       },
-      texto6: {
+      title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: 'black',
+        marginTop: 40
+      },
+      subtitle: {
+        fontSize: 16,
+        color: 'black',
+        textAlign: 'center',
+        marginHorizontal: 20,
+        marginTop: 10
+      },
+      input: {
+        width: '80%',
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 5,
+        marginTop: 20,
+        paddingHorizontal: 10
+      },
+      button: {
+        marginTop: 60,
+        backgroundColor: '#3897f0',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 20
+      },
+      buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold'
+      },
+      errorText: {
+        color: 'red',
         fontSize: 14,
         marginTop: 10,
-        marginLeft: 10, 
+        textAlign: 'center'
       },
-      
-    texto7: {
-      backgroundColor: '#007AFF',
-      color: '#fff',
-      paddingVertical: 10,
-      paddingHorizontal: 20,
-      borderRadius: 5,
-      fontSize: 18,
-      fontWeight: 'bold',
-    },
-    texto8: {
-      marginTop: 20,
-      color: '#007AFF',
-      fontSize: 16,
-      fontWeight: 'bold',
-      textDecorationLine: 'underline',
-    },
-  });
+      returnLink: {
+        color: '#3897f0',
+        fontSize: 14,
+        marginTop: 20,
+        fontWeight: 'bold',
+      }
+    })
   
 export default EditPerfil

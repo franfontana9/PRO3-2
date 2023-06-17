@@ -46,7 +46,7 @@ class FormRegister extends Component {
         <TextInput
         style={styles.input}
         keyboardType='email-address'
-        placeholder='User Name'
+        placeholder='Username'
         onChangeText={(text)=> this.setState({inputUsername: text})}
         value={this.state.inputUsername}
         />

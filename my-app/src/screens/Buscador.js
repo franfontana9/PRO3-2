@@ -69,18 +69,18 @@ export default class Buscador extends Component {
           <FlatList
             data={this.state.usuariosEmail}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <Text style={styles.user}  onPress={() =>this.props.navigation.navigate('ProfileAmigo', {email: item.data.owner})}>{item.data.owner}</Text>}
+            renderItem={({ item }) => <Text style={styles.user}  onPress={() =>this.props.navigation.navigate('Friend Profile', {email: item.data.owner})}>{item.data.owner}</Text>}
             /> : 
-            <Text style= {styles.noResult}> No results found Email</Text> 
+            <Text style= {styles.noResult}> No results found for this Email</Text> 
             }
   
   {this.state.usuariosNombre.length > 0?
           <FlatList
             data={this.state.usuariosNombre}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <Text style={styles.user} onPress={() =>this.props.navigation.navigate('ProfileAmigo', {email: item.data.owner})}>{item.data.inputUsername}</Text>}
+            renderItem={({ item }) => <Text style={styles.user} onPress={() =>this.props.navigation.navigate('Friend Profile', {email: item.data.owner})}>{item.data.inputUsername}</Text>}
             /> : 
-            <Text style= {styles.noResult}> No results found Nombre</Text> 
+            <Text style= {styles.noResult}> No results found for this Username</Text> 
             }
           </View>}
        

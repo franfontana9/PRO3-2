@@ -55,7 +55,7 @@ export default class CamaraPosteos extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.state.mostrarCamara && this.state.fotoTomada === '' ? 
+        {this.state.mostrarCamara && this.state.fotoTomada === '' ? (
           <>
             <Camera
               style={styles.camara}
@@ -66,7 +66,7 @@ export default class CamaraPosteos extends Component {
               <View style={styles.btnTomarFotoInnerCircle}></View>
             </TouchableOpacity>
           </>
-         : this.state.mostrarCamara === false && this.state.fotoTomada !== '' ? 
+        ) : this.state.mostrarCamara === false && this.state.fotoTomada !== '' ? (
           <>
             <Image source={{ uri: this.state.fotoTomada }} style={styles.img} />
             <View style={styles.btn}>
@@ -78,11 +78,11 @@ export default class CamaraPosteos extends Component {
               </TouchableOpacity>
             </View>
           </>
-        : 
-        <View style={styles.permission}>
-         <Text style={styles.permissionText}>You don't have permission to use the camera</Text>
-        </View>
-        }
+        ) : (
+          <View style={styles.permission}>
+            <Text style={styles.permissionText}>You don't have permission to use the camera</Text>
+          </View>
+        )}
       </View>
     );
   }
@@ -107,26 +107,27 @@ const styles = StyleSheet.create({
     width: 55,
     height: 55,
     borderRadius: 35,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-  },
-  btnTomarFotoInnerCircle: {
-    width: 60,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)'
 },
-info1: {
+btnTomarFotoInnerCircle: {
+    width: 60,
+  },
+  info1: {
     fontSize: 13,
     fontWeight: '600',
     color: 'black',
-    padding:10,
+    padding: 10,
     marginLeft: 120,
-    marginRight:120,
-    margin:10,
+    marginRight: 120,
+    margin: 10,
     textAlign: 'center',
-    borderRadius:100,
-    backgroundColor:'grey'
+    borderRadius: 100,
+    backgroundColor: 'grey',
   },
-  btn:{
-},
-permission: {
+  btn: {
+    // Add your button styles here if needed
+  },
+  permission: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -149,5 +150,6 @@ permission: {
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#fff',
-  }
-})
+  },
+});
+

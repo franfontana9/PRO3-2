@@ -37,7 +37,6 @@ class Post extends Component {
       .then((resp) => {
         this.setState({
           isLiked: false,
-
         });
       })
       .catch((err) => console.log(err));
@@ -90,22 +89,22 @@ class Post extends Component {
     return (
       <View style={styles.container}>
 
-        <View>
+        <View style={styles.infoContainer}>
           <TouchableOpacity
-           style={styles.nombre}
+            style={styles.nombre}
             onPress={() =>
-              this.props.navigation.navigate('ProfileAmigo', {
+              this.props.navigation.navigate('Friend Profile', {
                 email: this.props.data.data.owner,
               })
             }
           >
             <Text>{this.props.data.data.owner}</Text>
           </TouchableOpacity>
-          {this.props.data.data.owner == auth.currentUser.email ?
+          {this.props.data.data.owner == auth.currentUser.email ? (
             <TouchableOpacity onPress={() => this.deletePost()}>
-              <FontAwesome name="trash-o" size={28} color="red" />
+              <FontAwesome name="trash-o" size={20} color="red" />
             </TouchableOpacity>
-            : null}
+          ) : null}
         </View>
 
         <Image source={{ uri: this.props.data.data.foto }} style={styles.img} />
@@ -123,23 +122,29 @@ class Post extends Component {
             </TouchableOpacity>
           )}
 
-          <TouchableOpacity
-            style={styles.btnComentario}
-            onPress={() => this.props.navigation.navigate('Comments', { id: this.props.data.id })}
-          >
-            <FontAwesome name="comment-o" size={24} color="black" />
-          </TouchableOpacity>
+<TouchableOpacity
+              style={styles.btnComentario}
+              onPress={() => this.props.navigation.navigate('Comments', { id: this.props.data.id })}
+            >
+              <FontAwesome name="comment-o" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.cantidad}>{this.state.cantLikes} likes</Text>
+          <Text style={styles.cantidad}>{this.props.data.data.comments.length} comentarios</Text>
+          
+          <FlatList
+            data={this.props.data.data.comments.slice(-4)}
+            keyExtractor={(data) => data.createdAt}
+            renderItem={({ item }) => (
+              <Text style={styles.coment} onPress={() => this.props.navigation.navigate('ProfileAmigo', { email: item.owner })}>
+                {item.owner}:{item.comentario}
+              </Text>
+            )}
+          />
         </View>
-        <Text style={styles.cantidad}>{this.state.cantLikes} likes</Text>
-        <Text style={styles.cantidad}>{this.props.data.data.comments.length} comentarios</Text>
-        <FlatList
-          data={this.props.data.data.comments.slice(-4)}
-          keyExtractor={(data) => data.createdAt}
-          renderItem={({ item }) => <Text    style={styles.coment} onPress={() => this.props.navigation.navigate('ProfileAmigo', { email: item.owner })}>{item.owner}:{item.comentario}</Text>}>
-        </FlatList>
-      </View>
-    );
-  }
+      );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -153,6 +158,11 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
     elevation: 2,
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   img: {
     width: '100%',
@@ -188,9 +198,7 @@ const styles = StyleSheet.create({
   },
   coment: {
     fontSize: 10,
-
   }
+});
 
-})
-
-export default Post
+export default Post;
