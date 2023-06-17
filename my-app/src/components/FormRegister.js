@@ -9,20 +9,24 @@ class FormRegister extends Component {
             inputMail: '',
             inputPassword: '',
             inputUsername:'',
-            inputBio:''
+            inputBio:'',
         }
     }
 
-    registrarUsuario(mail, password, inputBio, inputUsername){
+    registrarUsuario(mail, password, inputBio, inputUsername, fotoPerfil){
         auth.createUserWithEmailAndPassword(mail, password)
         .then( data=> {
             db.collection('users').add({
                 owner:auth.currentUser.email,
                 createdAt: Date.now(),
+                fotoPerfil:'',
                 inputBio: inputBio,
                 inputUsername: inputUsername
             })
-            .then(resp=>this.props.navigation.navigate('InfoAdicionalUser'))
+            .then(resp => {
+                console.log(resp)
+                this.props.navigation.navigate('InfoAdicionalUser', {docId: resp.id })
+                })
             .catch(err=>console.log(err))
         })
         .catch(err=>console.log(err))

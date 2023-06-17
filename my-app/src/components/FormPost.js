@@ -9,7 +9,7 @@ export default class FormPost extends Component {
         <TextInput
         style={styles.input}
         keyboardType='default'
-        placeholder='Agrega la descripcion'
+        placeholder='Add description'
         value={this.props.stateDescripcion}
         onChangeText={(text)=> this.props.actualizarDescripcion(text)}
         multiline={true}

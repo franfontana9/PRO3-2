@@ -18,7 +18,7 @@ export default class CamaraPosteos extends Component {
       .then((resp) => this.setState({ mostrarCamara: true }))
       .catch((err) => console.log(err));
   }
-  
+
   tomarFoto() {
     this.metodosCamara
       .takePictureAsync()
@@ -71,10 +71,10 @@ export default class CamaraPosteos extends Component {
             <Image source={{ uri: this.state.fotoTomada }} style={styles.img} />
             <View style={styles.btn}>
               <TouchableOpacity onPress={() => this.aceptarFoto()} style={styles.btnAceptarFoto}>
-                <Text style={styles.info1}>Accept photo</Text>
+                <Text style={styles.info1}>Accept Photo</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => this.rechazarFoto()} style={styles.btnRechazarFoto}>
-                <Text style={styles.info1}>Retake photo</Text>
+                <Text style={styles.info1}>Retake Photo</Text>
               </TouchableOpacity>
             </View>
           </>
