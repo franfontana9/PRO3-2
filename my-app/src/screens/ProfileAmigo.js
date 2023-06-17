@@ -1,7 +1,6 @@
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 import { db } from '../firebase/config'
-import { disableExpoCliLogging } from 'expo/build/logs/Logs'
 import Posteos from '../components/Posteos'
 
 export default class ProfileAmigo extends Component {
@@ -48,26 +47,40 @@ export default class ProfileAmigo extends Component {
         })
     }
 
-
-  render() {
-    return (
-      <View>
-        {
-            this.state.infoUser !== '' 
-            ?
-            <>
-                <Text>{this.state.infoUser.data.owner}</Text>
-                <Text>{this.state.infoUser.data.createdAt}</Text>
-            </>
-            :
-            null
-
-        }
-        <Posteos
-            data={this.state.posteos}
-            navigation={this.props.navigation}
-        />
-      </View>
-    )
-  }
+    render() {
+        return (
+            <View style={styles.container}>
+                {this.state.infoUser !== '' ? (
+                    <>
+                        <Text style={styles.username}>{this.state.infoUser.data.owner}</Text>
+                        <Text style={styles.createdAt}>{this.state.infoUser.data.createdAt}</Text>
+                    </>
+                ) : null}
+                <Posteos
+                    data={this.state.posteos}
+                    navigation={this.props.navigation}
+                />
+            </View>
+        )
+    }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fafafa'
+    },
+    username: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        padding: 10
+    },
+    createdAt: {
+        fontSize: 14,
+        color: '#888',
+        marginBottom: 20,
+        padding: 10
+    }
+})
+

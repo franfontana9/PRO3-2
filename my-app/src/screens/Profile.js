@@ -63,23 +63,27 @@ class Profile extends Component {
             <Text style={styles.info}>{this.state.usuario[0]?.data.inputBio}</Text>
           ) : null}
 
-          <Text>Cantidad de posteos: {this.state.posteos.length}</Text>
+          <Text>Number of Posts: {this.state.posteos.length}</Text>
         </TouchableOpacity>
+
+        <Text>{this.state.usuario[0]?.data.fotoPerfil}</Text>      
 
         <FlatList
           data={this.state.posteos}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <Post data={item} />}
         />
-
-        <TouchableOpacity onPress={() => this.logout()}>
-          <Text style={styles.info1}>Sign Out</Text>
-        </TouchableOpacity>
         <TouchableOpacity
-          style={styles.editButton}
+          style={styles.info1}
           onPress={() => this.props.navigation.navigate('EditarPerfil')}
         >
-          <Text style={styles.editButtonText}>Editar mi Perfil</Text>
+          <Text style={styles.editButtonText}>Edit My Profile</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          onPress={() => this.logout()}
+          style={styles.info1}>
+          <Text style={styles.editButtonText}>Sign Out</Text>
         </TouchableOpacity>
       </View>
     );
